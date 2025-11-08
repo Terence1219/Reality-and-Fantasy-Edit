@@ -18,11 +18,11 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from diffusers.utils import deprecate, logging, maybe_allow_in_graph
+from diffusers.utils import deprecate, logging
 
 logger = logging.get_logger(__name__)  # pylint: disable=invalid-name
 
-@maybe_allow_in_graph
+# @maybe_allow_in_graph
 class Attention(nn.Module):
     r"""
     A cross attention layer.

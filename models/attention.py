@@ -17,7 +17,7 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from diffusers.utils import maybe_allow_in_graph
+# from diffusers.utils import maybe_allow_in_graph
 from .attention_processor import Attention
 from diffusers.models.embeddings import CombinedTimestepLabelEmbeddings
 
@@ -52,7 +52,7 @@ class GatedSelfAttentionDense(nn.Module):
 
         return x
 
-@maybe_allow_in_graph
+# @maybe_allow_in_graph
 class BasicTransformerBlock(nn.Module):
     r"""
     A basic Transformer block.

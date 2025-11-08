@@ -19,7 +19,7 @@ import torch.nn.functional as F
 from torch import nn
 
 from diffusers.utils import is_torch_version
-from diffusers.models.dual_transformer_2d import DualTransformer2DModel
+from diffusers.models.transformers.transformer_2d import Transformer2DModel as DualTransformer2DModel
 from diffusers.models.resnet import Downsample2D, ResnetBlock2D, Upsample2D
 from .transformer_2d import Transformer2DModel
 
