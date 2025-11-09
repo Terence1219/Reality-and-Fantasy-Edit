@@ -63,7 +63,7 @@ prompts_demo_gpt4, prompts_demo_gpt3_5 = [], []
 
 # Put what we want to generate when you query GPT-4 for demo here
 prompts_demo_gpt4 = [
-    "A rat hunting a lion on the grassland",
+    "A car is moving toward a cat on the grassland",
 ]
 
 # Put what we want to generate when you query GPT-3.5 for demo here

@@ -13,6 +13,7 @@ import diffusers
 from models import sam
 import argparse
 import generation.sdxl_refinement as sdxl
+from PIL import Image
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--save-suffix", default=None, type=str)
@@ -38,6 +39,7 @@ parser.add_argument("--dry-run", action="store_true", help="skip the generation"
 
 parser.add_argument("--sdxl", action="store_true", help="Enable sdxl.")
 parser.add_argument("--sdxl-step-ratio", type=float, default=0.3, help="SDXL step ratio: the higher the stronger the refinement.")
+parser.add_argument("--inpaint", action="store_true", help="Run inpainting model")
 
 float_args = [
     "frozen_step_ratio",
@@ -115,7 +117,9 @@ if args.run_model in our_models:
     models.model_dict.update(sam_model_dict)
 
 if not args.dry_run:
-    if args.run_model == "lmd":
+    if args.inpaint:
+        import generation.inpaint as generation
+    elif args.run_model == "lmd":
         import generation.lmd as generation
     else:
         raise ValueError(f"Unknown model type: {args.run_model}")
@@ -162,6 +166,9 @@ if args.sdxl:
     base_save_dir += f"_sdxl_{args.sdxl_step_ratio}"
 
 run_kwargs = {}
+if args.inpaint:
+    im = Image.open("img_3.png")
+    run_kwargs["input_image"] = im
 
 argnames = float_args + int_args + str_args
 
