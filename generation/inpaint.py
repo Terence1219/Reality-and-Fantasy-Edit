@@ -684,7 +684,30 @@ def run(
         # NEW: freeze background (so only bounding-box regions / foreground can be modified)
         # foreground_indices == 0 means background; we want to freeze background so the background remains unchanged.
 
-        frozen_mask = foreground_indices != 0
+        # frozen_mask = foreground_indices != 0
+
+        # 2. 建立一個代表「所有 Bounding Box 區域」的遮罩
+        #    (True 代表在 Bounding Box 內)
+        all_boxes_mask = torch.zeros((H, W), dtype=torch.bool, device=torch_device)
+        
+        # 遍歷 overall_bboxes (這是一個 box 的列表的列表)
+        for box_list in overall_bboxes:
+            for box in box_list:
+                # utils.proportion_to_mask 會將 BBox 轉為 2D 遮罩
+                # 我們使用 OR (|=) 運算將所有 BBox 的遮罩合併起來
+                all_boxes_mask |= (utils.proportion_to_mask(box, H, W) > 0)
+        
+        # 3. 建立一個代表「精確物件區域」的遮罩
+        #    (True 代表在精確的物件上)
+        precise_object_mask = (foreground_indices != 0)
+
+        # 4. 建立一個代表「Bounding Box 以外背景」的遮罩
+        #    (True 代表在所有 Bounding Box 之外)
+        background_outside_boxes_mask = ~all_boxes_mask
+
+        # 5. 產生最終的 frozen_mask
+        #    我們要凍結的是「精確的物件」OR「BBox 以外的背景」
+        frozen_mask = precise_object_mask | background_outside_boxes_mask
         # print(overall_bboxes)
         # print(np.array(overall_bboxes) * 512)
         # print(foreground_indices.size())
@@ -694,10 +717,12 @@ def run(
             model_dict,
             composed_latents.cuda(),
             frozen_mask.to(torch.bool).cuda(),
+            precise_object_mask,
+            background_outside_boxes_mask,
             overall_input_embeddings,
             num_inference_steps,#50
             frozen_steps,
-            guidance_scale = 7.5,
+            guidance_scale = 1.5,
             bboxes=overall_bboxes,
             phrases=overall_phrases,
             object_positions=overall_object_positions,
@@ -710,7 +735,7 @@ def run(
         print("Generation from composed latents (with semantic guidance)")
 
     utils.free_memory() 
-    decode_latents_to_pil(composed_latents).save("test.png")
-    decode_latents_to_pil(latents_bg).save("test_bg.png")
+    decode_latents_to_pil(composed_latents[-1]).save("test.png")
+    decode_latents_to_pil(composed_latents[0]).save("test_bg.png")
 
     return EasyDict(image=images[0], so_img_list=so_img_list)

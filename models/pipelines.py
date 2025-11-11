@@ -548,7 +548,7 @@ def invert(model_dict, latents, input_embeddings, num_inference_steps, guidance_
     
     return inverted_latents
 
-def generate_partial_frozen(model_dict, latents_all, frozen_mask, input_embeddings, num_inference_steps, frozen_steps, guidance_scale = 7.5, bboxes=None, phrases=None, object_positions=None, semantic_guidance_kwargs=None, offload_guidance_cross_attn_to_cpu=False, use_boxdiff=False):
+def generate_partial_frozen(model_dict, latents_all, frozen_mask, precise_object_mask, background_outside_boxes_mask, input_embeddings, num_inference_steps, frozen_steps, guidance_scale = 7.5, bboxes=None, phrases=None, object_positions=None, semantic_guidance_kwargs=None, offload_guidance_cross_attn_to_cpu=False, use_boxdiff=False):
     vae, tokenizer, text_encoder, unet, scheduler, dtype = model_dict.vae, model_dict.tokenizer, model_dict.text_encoder, model_dict.unet, model_dict.scheduler, model_dict.dtype
     text_embeddings, uncond_embeddings, cond_embeddings = input_embeddings
     
@@ -599,8 +599,8 @@ def generate_partial_frozen(model_dict, latents_all, frozen_mask, input_embeddin
             latents = scheduler.step(noise_pred, t, latents).prev_sample
             
             if index < frozen_steps:
-                latents = latents_all[index+1] * frozen_mask + latents * (1. - frozen_mask)
-
+                latents = latents_all[-1] * precise_object_mask + latents * (1. - frozen_mask) + latents_all[0] * background_outside_boxes_mask
+                # latents = latents_all[index+1] * frozen_mask + latents * (1. - frozen_mask) 
     # scale and decode the image latents with vae
     scaled_latents = 1 / 0.18215 * latents
     with torch.no_grad():
