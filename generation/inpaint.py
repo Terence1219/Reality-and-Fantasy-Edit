@@ -78,7 +78,6 @@ def generate_single_object_with_box(
     prompts = phrase.split(' ')
     prompts.insert(len(prompts), descriptions[idx][1])
     prompts = [' '.join(prompts)]
-
     if verbose:
         print(f"Getting token map (prompt: {prompt})")
 
@@ -713,16 +712,18 @@ def run(
         # print(foreground_indices.size())
         # print(latents_bg.size())
         # print(torch.zeros(latents_bg.shape[-2:], dtype=torch.long).size())
+        num_inference_steps = 100
+
         regen_latents, images = pipelines.generate_partial_frozen(
             model_dict,
             composed_latents.cuda(),
-            frozen_mask.to(torch.bool).cuda(),
+            frozen_mask.cuda(),
             precise_object_mask,
             background_outside_boxes_mask,
             overall_input_embeddings,
             num_inference_steps,#50
             frozen_steps,
-            guidance_scale = 1.5,
+            guidance_scale,
             bboxes=overall_bboxes,
             phrases=overall_phrases,
             object_positions=overall_object_positions,

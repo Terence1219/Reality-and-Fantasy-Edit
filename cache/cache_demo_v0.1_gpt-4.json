@@ -1,5 +1,5 @@
 {
-    "A car is moving toward a cat on the grassland": [
-        "[('a car', [20, 120, 312, 292]), ('a cat', [340, 322, 150, 130])]\nDescriptions: [('a car', 'roar, with big mouth and sharp teeth, leap out at'), ('a cat', 'unawared and sleeping')]\nMore Description: [[('A car', 'bold and audacious, surprisingly attacking from behind'), ('a cat', 'shocked and confused, quickly turning to defend')], [('A car', 'sneaky and quick, darting towards'), ('a cat', 'startled and attempting to escape, visibly frightened')]]\nBackground prompt: A grassland scene\nNegative prompt: "
+    "A reflection of a juvenile tiger searching for clams at low tide": [
+        "[('tiger', [104, 122, 392, 312])]\nDescriptions: [('tiger', 'A juvenile tiger with vibrant orange and black stripes is searching for clams at low tide.')]\nMore Description: [[('tiger', \"The tiger's reflection shimmers in the water as it curiously explores the sandy shore, blending the wild beauty of the coastal environment with its striking appearance.\")], [('tiger', \"The scene captures the essence of the tiger's playful movement, showcasing its agility and grace while foraging in the serene landscape of Lake Clark National Park.\")]]\nBackground prompt: A reflection of a juvenile tiger searching for clams at low tide\nNegative prompt: "
     ]
 }

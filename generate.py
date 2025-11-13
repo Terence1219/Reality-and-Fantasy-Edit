@@ -167,7 +167,7 @@ if args.sdxl:
 
 run_kwargs = {}
 if args.inpaint:
-    im = Image.open("img_3.png")
+    im = Image.open("4.png")
     run_kwargs["input_image"] = im
 
 argnames = float_args + int_args + str_args
