@@ -675,8 +675,8 @@ def generate_partial_frozen(model_dict, latents_all, frozen_mask, precise_object
                 #
                 # 我們使用模糊後的 'frozen_mask' (值在 0.0-1.0 之間) 來平滑地混合它們。
                 latents_frozen_proposal = latents_all[index+1].to(latents.device) # 確保在同一設備上
-                # latents = latents_frozen_proposal * frozen_mask + latents * (1. - frozen_mask)
-                latents = latents_all[-1] * precise_object_mask + latents * (1. - frozen_mask) + latents_all[0] * background_outside_boxes_mask
+                latents = latents_frozen_proposal * frozen_mask + latents * (1. - frozen_mask)
+                # latents = latents_all[-1] * precise_object_mask + latents * (1. - frozen_mask) + latents_all[0] * background_outside_boxes_mask
             # --- 結束：新的混合邏輯 ---
     # scale and decode the image latents with vae
     scaled_latents = 1 / 0.18215 * latents
