@@ -16,7 +16,7 @@ import math
 # Note that the first up block is `UpBlock2D` rather than `CrossAttnUpBlock2D` and does not have attention. The last index is always 0 in our case since we have one `BasicTransformerBlock` in each `Transformer2DModel`.
 DEFAULT_GUIDANCE_ATTN_KEYS = [("mid", 0, 0, 0), ("up", 1, 0, 0), ("up", 1, 1, 0), ("up", 1, 2, 0)]
 
-def latent_backward_guidance(scheduler, unet, cond_embeddings, index, bboxes, object_positions, t, latents, loss, loss_scale = 30, loss_threshold = 0.2, max_iter = 5, max_index_step = 10, cross_attention_kwargs=None, ref_ca_saved_attns=None, guidance_attn_keys=None, verbose=False, clear_cache=False, **kwargs):
+def latent_backward_guidance(scheduler, unet, cond_embeddings, index, bboxes, object_positions, t, latents, loss, loss_scale = 30, loss_threshold = 0.2, max_iter = 5, max_index_step = 10, cross_attention_kwargs=None, ref_ca_saved_attns=None, guidance_attn_keys=None, verbose=False, clear_cache=False, frozen_mask=None, **kwargs):
 
     iteration = 0
     
@@ -57,7 +57,11 @@ def latent_backward_guidance(scheduler, unet, cond_embeddings, index, bboxes, ob
             # call gc.collect() here may release some memory
 
             grad_cond = torch.autograd.grad(loss.requires_grad_(True), [latents])[0]
-
+            # [新增] 阻止梯度污染凍結區域
+            if frozen_mask is not None:
+                # frozen_mask 是 1.0 (凍結), 0.0 (繪製)
+                # 我們只希望梯度在非凍結區域 (1.0 - frozen_mask) 中生效
+                grad_cond = grad_cond * (1. - frozen_mask)
             latents.requires_grad_(False)
             
             if hasattr(scheduler, 'sigmas'):
@@ -613,17 +617,17 @@ def generate_partial_frozen(model_dict, latents_all, frozen_mask, precise_object
     # 3. 應用高斯模糊來羽化邊緣。
     # 您可以調整 kernel_size (必須是奇數) 和 sigma 來控制混合的平滑度。
     # 較大的 sigma = 較軟的邊緣。
-    kernel_size = 15  # 模糊核大小
-    sigma = 1.0       # 模糊強度
+    kernel_size = 17  # 模糊核大小
+    sigma = 0.0       # 模糊強度
     
-    blurred_mask = F.gaussian_blur(frozen_mask_float, kernel_size=(kernel_size, kernel_size), sigma=(sigma, sigma))
+    # blurred_mask = F.gaussian_blur(frozen_mask_float, kernel_size=(kernel_size, kernel_size), sigma=(sigma, sigma))
     
     # 4. 確保值保持在 [0.0, 1.0] 範圍內
-    blurred_mask = blurred_mask.clamp(0., 1.)
+    # blurred_mask = blurred_mask.clamp(0., 1.)
     
     # 將 'frozen_mask' 變數替換為我們新的 'blurred_mask'
     # 它的形狀是 [1, 1, H, W]，可以完美地廣播 (broadcast) 到 [B, C, H, W] 的潛在向量
-    frozen_mask = blurred_mask
+    frozen_mask = frozen_mask.to(dtype=dtype)
     # --- 結束：新的模糊遮罩邏輯 ---
     
     latents = latents_all[0]
@@ -650,7 +654,7 @@ def generate_partial_frozen(model_dict, latents_all, frozen_mask, precise_object
             if use_boxdiff:
                 latents, loss = boxdiff.latent_backward_guidance_boxdiff(scheduler, unet, cond_embeddings, index, bboxes, object_positions, t, latents, loss, cross_attention_kwargs=guidance_cross_attention_kwargs, **semantic_guidance_kwargs)
             else:
-                latents, loss = latent_backward_guidance(scheduler, unet, cond_embeddings, index, bboxes, object_positions, t, latents, loss, cross_attention_kwargs=guidance_cross_attention_kwargs, **semantic_guidance_kwargs)
+                latents, loss = latent_backward_guidance(scheduler, unet, cond_embeddings, index, bboxes, object_positions, t, latents, loss, cross_attention_kwargs=guidance_cross_attention_kwargs, frozen_mask=frozen_mask, **semantic_guidance_kwargs)
 
         with torch.no_grad():
             # expand the latents if we are doing classifier-free guidance to avoid doing two forward passes.
@@ -676,7 +680,7 @@ def generate_partial_frozen(model_dict, latents_all, frozen_mask, precise_object
                 # 我們使用模糊後的 'frozen_mask' (值在 0.0-1.0 之間) 來平滑地混合它們。
                 latents_frozen_proposal = latents_all[index+1].to(latents.device) # 確保在同一設備上
                 latents = latents_frozen_proposal * frozen_mask + latents * (1. - frozen_mask)
-                # latents = latents_all[-1] * precise_object_mask + latents * (1. - frozen_mask) + latents_all[0] * background_outside_boxes_mask
+                # latents = latents_all[-1] * precise_object_mask + latents * (1. - frozen_mask) + latents_all[-1] * background_outside_boxes_mask
             # --- 結束：新的混合邏輯 ---
     # scale and decode the image latents with vae
     scaled_latents = 1 / 0.18215 * latents

@@ -738,8 +738,8 @@ def run(
         # print(foreground_indices.size())
         # print(latents_bg.size())
         # print(torch.zeros(latents_bg.shape[-2:], dtype=torch.long).size())
-        # num_inference_steps = 50
-        # frozen_steps = 40
+        num_inference_steps = 50
+        frozen_steps = 50
         regen_latents, images = pipelines.generate_partial_frozen(
             model_dict,
             composed_latents.cuda(),
@@ -749,7 +749,7 @@ def run(
             overall_input_embeddings,
             num_inference_steps,#50
             frozen_steps,
-            guidance_scale,
+            guidance_scale=1.0,
             bboxes=overall_bboxes,
             phrases=overall_phrases,
             object_positions=overall_object_positions,
