@@ -98,7 +98,7 @@ def compose_latents(model_dict, latents_all_list, mask_tensor_list, num_inferenc
         generator = torch.manual_seed(bg_seed)
         latents_bg = get_scaled_latents(overall_batch_size, unet.config.in_channels, height, width, generator, dtype, scheduler)
     
-    # [修正 1] 處理 5D latents_bg 並取得正確的裝置 (device)
+    # use latents_bg with history
     if latents_bg.dim() == 5:
         composed_latents = latents_bg.clone()
     else:
@@ -108,10 +108,8 @@ def compose_latents(model_dict, latents_all_list, mask_tensor_list, num_inferenc
             composed_latents = torch.zeros((num_inference_steps + 1, *latents_bg.shape), dtype=dtype)
         composed_latents[0] = latents_bg
 
-    # 取得目標裝置 (通常是 cuda)
     target_device = composed_latents.device
 
-    # [修正 2] 確保 foreground_indices 也在正確的裝置上
     foreground_indices = torch.zeros(latents_bg.shape[-2:], dtype=torch.long, device=target_device)
     
     mask_size = np.array([mask_tensor.sum().item() for mask_tensor in mask_tensor_list])
@@ -121,12 +119,10 @@ def compose_latents(model_dict, latents_all_list, mask_tensor_list, num_inferenc
         for mask_idx in mask_order:
             latents_all, mask_tensor = latents_all_list[mask_idx], mask_tensor_list[mask_idx]
             
-            # [修正 3] 運算前將 latents_all 移動到目標裝置
             latents_all = latents_all.to(target_device)
             
             mask_tensor = utils.binary_mask_to_box_mask(mask_tensor, to_device=False)
 
-            # [修正 4] 運算前將 mask_tensor_expanded 移動到目標裝置
             mask_tensor_expanded = mask_tensor[None, None, None, ...].to(device=target_device, dtype=dtype)
             
             composed_latents[0] = composed_latents[0] * (1. - mask_tensor_expanded) + latents_all[0] * mask_tensor_expanded
@@ -134,9 +130,8 @@ def compose_latents(model_dict, latents_all_list, mask_tensor_list, num_inferenc
     for mask_idx in mask_order:
         latents_all, mask_tensor = latents_all_list[mask_idx], mask_tensor_list[mask_idx]
         
-        # [修正 5] 確保所有張量都在目標裝置上
         latents_all = latents_all.to(target_device)
-        mask_tensor = mask_tensor.to(target_device) # 確保 mask 本身也在 GPU，以便計算 foreground_indices
+        mask_tensor = mask_tensor.to(target_device) 
         
         foreground_indices = foreground_indices * (~mask_tensor) + (mask_idx + 1) * mask_tensor
         

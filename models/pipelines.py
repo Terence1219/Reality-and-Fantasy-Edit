@@ -552,83 +552,22 @@ def invert(model_dict, latents, input_embeddings, num_inference_steps, guidance_
     
     return inverted_latents
 import torchvision.transforms.functional as F
-def generate_partial_frozen(model_dict, latents_all, frozen_mask, precise_object_mask, background_outside_boxes_mask, input_embeddings, num_inference_steps, frozen_steps, guidance_scale = 7.5, bboxes=None, phrases=None, object_positions=None, semantic_guidance_kwargs=None, offload_guidance_cross_attn_to_cpu=False, use_boxdiff=False):
+def generate_partial_frozen(model_dict, latents_all, frozen_mask, input_embeddings, num_inference_steps, frozen_steps, guidance_scale = 7.5, bboxes=None, phrases=None, object_positions=None, semantic_guidance_kwargs=None, offload_guidance_cross_attn_to_cpu=False, use_boxdiff=False):
     vae, tokenizer, text_encoder, unet, scheduler, dtype = model_dict.vae, model_dict.tokenizer, model_dict.text_encoder, model_dict.unet, model_dict.scheduler, model_dict.dtype
     text_embeddings, uncond_embeddings, cond_embeddings = input_embeddings
     
-    # scheduler.set_timesteps(num_inference_steps)
-    # frozen_mask = frozen_mask.to(dtype=dtype).clamp(0., 1.)
-    
-    # latents = latents_all[0]
-    
-    # if bboxes:
-    #     # With semantic guidance
-    #     loss = torch.tensor(10000.)
-
-    #     # offload_guidance_cross_attn_to_cpu does not save too much since we only store attention map for each timestep.
-    #     guidance_cross_attention_kwargs = {
-    #         'offload_cross_attn_to_cpu': offload_guidance_cross_attn_to_cpu,
-    #         # Getting invalid argument on backward, probably due to insufficient shared memory
-    #         'enable_flash_attn': False
-    #     }
-
-    # saved_attn = {}
-    # main_cross_attention_kwargs = {
-    #     'save_attn_to_dict': saved_attn,
-    #     'save_keys': DEFAULT_GUIDANCE_ATTN_KEYS,
-    # }
-
-    # for index, t in enumerate(tqdm(scheduler.timesteps)):
-    #     if bboxes:
-    #         # With semantic guidance, `guidance_attn_keys` should be in `semantic_guidance_kwargs`
-    #         if use_boxdiff:
-    #             latents, loss = boxdiff.latent_backward_guidance_boxdiff(scheduler, unet, cond_embeddings, index, bboxes, object_positions, t, latents, loss, cross_attention_kwargs=guidance_cross_attention_kwargs, **semantic_guidance_kwargs)
-    #         else:
-    #             latents, loss = latent_backward_guidance(scheduler, unet, cond_embeddings, index, bboxes, object_positions, t, latents, loss, cross_attention_kwargs=guidance_cross_attention_kwargs, **semantic_guidance_kwargs)
-
-    #     with torch.no_grad():
-    #         # expand the latents if we are doing classifier-free guidance to avoid doing two forward passes.
-    #         latent_model_input = torch.cat([latents] * 2)
-
-    #         latent_model_input = scheduler.scale_model_input(latent_model_input, timestep=t)
-
-    #         # predict the noise residual
-    #         noise_pred = unet(latent_model_input, t, encoder_hidden_states=text_embeddings, cross_attention_kwargs=main_cross_attention_kwargs).sample
-
-    #         # perform guidance
-    #         noise_pred_uncond, noise_pred_text = noise_pred.chunk(2)
-    #         noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_text - noise_pred_uncond)
-
-    #         # compute the previous noisy sample x_t -> x_t-1
-    #         latents = scheduler.step(noise_pred, t, latents).prev_sample
-            
-    #         if index < frozen_steps:
-    #             latents = latents_all[-1] * precise_object_mask + latents * (1. - frozen_mask) + latents_all[0] * background_outside_boxes_mask
-    #             # latents = latents_all[index+1] * frozen_mask + latents * (1. - frozen_mask) 
     scheduler.set_timesteps(num_inference_steps)
-
-    # --- 開始：新的模糊遮罩邏輯 (替換 L677) ---
-    # 1. 將傳入的布林遮罩 [H, W] 轉為浮點數
     frozen_mask_float = frozen_mask.to(dtype=dtype)
 
-    # 2. Unsqueeze 到 [1, 1, H, W] 以便應用 2D 模糊
     frozen_mask_float = frozen_mask_float.unsqueeze(0).unsqueeze(0)
 
-    # 3. 應用高斯模糊來羽化邊緣。
-    # 您可以調整 kernel_size (必須是奇數) 和 sigma 來控制混合的平滑度。
-    # 較大的 sigma = 較軟的邊緣。
-    kernel_size = 17  # 模糊核大小
-    sigma = 0.0       # 模糊強度
+    kernel_size = 17  
+    sigma = 0.5 
+
+    blurred_mask = F.gaussian_blur(frozen_mask_float, kernel_size=(kernel_size, kernel_size), sigma=(sigma, sigma))
+    blurred_mask = blurred_mask.clamp(0., 1.)
     
-    # blurred_mask = F.gaussian_blur(frozen_mask_float, kernel_size=(kernel_size, kernel_size), sigma=(sigma, sigma))
-    
-    # 4. 確保值保持在 [0.0, 1.0] 範圍內
-    # blurred_mask = blurred_mask.clamp(0., 1.)
-    
-    # 將 'frozen_mask' 變數替換為我們新的 'blurred_mask'
-    # 它的形狀是 [1, 1, H, W]，可以完美地廣播 (broadcast) 到 [B, C, H, W] 的潛在向量
-    frozen_mask = frozen_mask.to(dtype=dtype)
-    # --- 結束：新的模糊遮罩邏輯 ---
+    frozen_mask = blurred_mask.to(dtype=dtype)
     
     latents = latents_all[0]
     
@@ -671,17 +610,11 @@ def generate_partial_frozen(model_dict, latents_all, frozen_mask, precise_object
             # compute the previous noisy sample x_t -> x_t-1
             latents = scheduler.step(noise_pred, t, latents).prev_sample
             
-            # --- 開始：新的混合邏輯 (替換 L726) ---
+
             if index < frozen_steps:
-                # 這是 DDIM inpainting 的標準邏輯。
-                # latents_all[index+1] 是 "凍結" 區域在 t-1 時刻的潛在向量
-                # latents 是 "繪製" 區域在 t-1 時刻的潛在向量
-                #
-                # 我們使用模糊後的 'frozen_mask' (值在 0.0-1.0 之間) 來平滑地混合它們。
-                latents_frozen_proposal = latents_all[index+1].to(latents.device) # 確保在同一設備上
+                latents_frozen_proposal = latents_all[index+1].to(latents.device)
                 latents = latents_frozen_proposal * frozen_mask + latents * (1. - frozen_mask)
-                # latents = latents_all[-1] * precise_object_mask + latents * (1. - frozen_mask) + latents_all[-1] * background_outside_boxes_mask
-            # --- 結束：新的混合邏輯 ---
+
     # scale and decode the image latents with vae
     scaled_latents = 1 / 0.18215 * latents
     with torch.no_grad():
