@@ -69,7 +69,8 @@ def parse_input(text=None, no_input=False):
 
 def parse_input_with_negative(text=None, no_input=False):
     # no_input: should not request interactive input
-    
+    image_filename = text[1]
+    text = text[0]
     if not text:
         if no_input:
             raise user_error(f"No input parsed in \"{text}\".")
@@ -175,7 +176,7 @@ def parse_input_with_negative(text=None, no_input=False):
             more_prompt = []
         else:
             raise e
-    return gen_boxes, bg_prompt, neg_prompt, des_prompt, more_prompt
+    return gen_boxes, bg_prompt, neg_prompt, des_prompt, more_prompt, image_filename
 
 def filter_boxes(gen_boxes, scale_boxes=True, ignore_background=True, max_scale=3):
     if gen_boxes is None:

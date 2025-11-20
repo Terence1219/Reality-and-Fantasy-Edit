@@ -47,6 +47,19 @@ def get_cache(key):
         global_cache_index[key] = 0
     
     current_items = global_cache[key]
+    # --- [修改開始] 新增格式判斷邏輯 ---
+    # 偵測資料是否為 [Prompt, ImageFilename] 的單一筆格式
+    # 條件：長度為 2，且第二個元素是字串並帶有圖片副檔名
+    if (isinstance(current_items, list) and 
+        len(current_items) == 2 and 
+        isinstance(current_items[1], str) and 
+        current_items[1].lower().strip().endswith(('.png', '.jpg', '.jpeg', '.webp', '.bmp'))):
+        
+        # 如果符合，我們將其「打包」成一層 list
+        # 讓它變成 [ ["Text...", "4.png"] ]
+        # 這樣下方的邏輯就會把它當作 index 0 的「整筆資料」回傳
+        current_items = [current_items]
+    # --- [修改結束] ---
     current_index = global_cache_index[key]
     if len(current_items) > current_index:
         global_cache_index[key] += 1

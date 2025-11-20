@@ -166,9 +166,6 @@ if args.sdxl:
     base_save_dir += f"_sdxl_{args.sdxl_step_ratio}"
 
 run_kwargs = {}
-if args.inpaint:
-    im = Image.open("4.png")
-    run_kwargs["input_image"] = im
 
 argnames = float_args + int_args + str_args
 
@@ -258,7 +255,7 @@ for regenerate_ind in range(args.regenerate):
             os.makedirs(parse.img_dir, exist_ok=True)
             vis.reset_save_ind()
             try:
-                gen_boxes, bg_prompt, neg_prompt, descriptions, more_description = parse_input_with_negative(
+                gen_boxes, bg_prompt, neg_prompt, descriptions, more_description, image_filename = parse_input_with_negative(
                     resp, no_input=True
                 )
 
@@ -269,6 +266,10 @@ for regenerate_ind in range(args.regenerate):
                     neg_prompt = ""
 
                 gen_boxes = filter_boxes(gen_boxes, scale_boxes=scale_boxes)
+
+                if args.inpaint:
+                    im = Image.open(image_filename)
+                    run_kwargs["input_image"] = im
 
                 spec = {
                     "prompt": prompt,

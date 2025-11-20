@@ -1,5 +1,6 @@
 {
     "A reflection of a juvenile tiger searching for clams at low tide in Lake Clark NP": [
-        "[('tiger', [104, 122, 288, 190])]\nDescriptions: [('tiger', 'A juvenile tiger with vibrant orange and black stripes is searching for clams at low tide.')]\nMore Description: [[('tiger', \"The tiger's reflection shimmers in the water as it curiously explores the sandy shore, blending the wild beauty of the coastal environment with its striking appearance.\")], [('tiger', \"The scene captures the essence of the tiger's playful movement, showcasing its agility and grace while foraging in the serene landscape of Lake Clark National Park.\")]]\nBackground prompt: A reflection of a juvenile tiger searching for clams at low tide in Lake Clark NP.\nNegative prompt: "
+        "[('tiger', [104, 122, 288, 190])]\nDescriptions: [('tiger', 'A juvenile tiger with vibrant orange and black stripes is searching for clams at low tide.')]\nMore Description: [[('tiger', \"The tiger's reflection shimmers in the water as it curiously explores the sandy shore, blending the wild beauty of the coastal environment with its striking appearance.\")], [('tiger', \"The scene captures the essence of the tiger's playful movement, showcasing its agility and grace while foraging in the serene landscape of Lake Clark National Park.\")]]\nBackground prompt: A reflection of a juvenile tiger searching for clams at low tide in Lake Clark NP.\nNegative prompt: ",
+        "4.png"
     ]
 }
