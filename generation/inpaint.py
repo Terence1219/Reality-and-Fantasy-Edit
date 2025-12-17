@@ -577,33 +577,24 @@ def run(
                 [],
                 [],
             )
-        # [新增] 產生背景的雜訊歷史 (Noisy Background History)
-        # 這是為了確保混合時，背景不是全黑的 0，而是帶有正確雜訊的 input_image
+
+
         if input_image is not None:
             print("Generating noisy background history for mixing...")
-            # 1. 確保 scheduler 時間步已設定
             scheduler.set_timesteps(num_inference_steps)
             
-            # 2. 準備一個列表來存每一步的背景
             bg_latents_all = []
             
-            # 3. 對於每一個時間步 t，都將雜訊加到 latents_bg (原圖) 上
-            # 注意：latents_bg 目前是乾淨的原圖 (z0)
             for t in scheduler.timesteps:
-                # 產生隨機雜訊
                 noise = torch.randn_like(latents_bg)
-                # 使用 scheduler 加噪: z_t = alpha * z_0 + sigma * noise
                 noisy_bg = scheduler.add_noise(latents_bg, noise, t)
                 bg_latents_all.append(noisy_bg)
             
-            # 4. 最後補上原本乾淨的 latents_bg (做為最後一步)
             bg_latents_all.append(latents_bg)
             
-            # 5. 堆疊成 5D 張量 [T+1, B, C, H, W]
+            #[T+1, B, C, H, W]
             latents_bg = torch.stack(bg_latents_all)
-            
-            # [重要] 確保 pipeline 開始的起點是全雜訊 (T)，而不是乾淨圖
-            # 因為 latents_bg[0] 對應到 timesteps[0] (
+
         (
             composed_latents,
             foreground_indices,
@@ -633,7 +624,6 @@ def run(
             b.append(' '.join(a))
             
         overall_prompt = ', '.join(b)
-        # print("overall_prompt:", overall_prompt)
 
         # NOTE: need to ensure overall embeddings are generated after the update of overall prompt
         (
@@ -706,7 +696,7 @@ def run(
 
         # Generate with composed latents
 
-        # NEW: freeze bg + generated obj (so only space between bg and obj can be modified)
+        #freeze bg + generated obj (so only space between bg and obj can be modified)
         all_boxes_mask = torch.zeros((H, W), dtype=torch.bool, device=torch_device)
         for box_list in overall_bboxes:
             for box in box_list:
@@ -736,8 +726,7 @@ def run(
             f"Generation with spatial guidance from input latents and first {frozen_steps} steps frozen (background frozen so only boxes may change)"
         )
         print("Generation from composed latents (with semantic guidance)")
-    decode_latents_to_pil(composed_latents[-1]).save("test.png")
-    decode_latents_to_pil(composed_latents[0]).save("test_bg.png")
+        
     utils.free_memory() 
 
     return EasyDict(image=images[0], so_img_list=so_img_list)

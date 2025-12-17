@@ -57,10 +57,8 @@ def latent_backward_guidance(scheduler, unet, cond_embeddings, index, bboxes, ob
             # call gc.collect() here may release some memory
 
             grad_cond = torch.autograd.grad(loss.requires_grad_(True), [latents])[0]
-            # [新增] 阻止梯度污染凍結區域
+
             if frozen_mask is not None:
-                # frozen_mask 是 1.0 (凍結), 0.0 (繪製)
-                # 我們只希望梯度在非凍結區域 (1.0 - frozen_mask) 中生效
                 grad_cond = grad_cond * (1. - frozen_mask)
             latents.requires_grad_(False)
             
@@ -610,7 +608,6 @@ def generate_partial_frozen(model_dict, latents_all, frozen_mask, input_embeddin
             # compute the previous noisy sample x_t -> x_t-1
             latents = scheduler.step(noise_pred, t, latents).prev_sample
             
-
             if index < frozen_steps:
                 latents_frozen_proposal = latents_all[index+1].to(latents.device)
                 latents = latents_frozen_proposal * frozen_mask + latents * (1. - frozen_mask)

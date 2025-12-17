@@ -62,9 +62,11 @@ stop = "\n\n"
 prompts_demo_gpt4, prompts_demo_gpt3_5 = [], []
 
 # Put what we want to generate when you query GPT-4 for demo here
-prompts_demo_gpt4 = [
-    "A reflection of a juvenile tiger searching for clams at low tide in Lake Clark NP"
-]
+import json
+with open("cache/cache_demo_v0.1_gpt-4.json", 'r', encoding='utf-8') as f:
+    data = json.load(f)
+prompts_demo_gpt4 = list(data.keys())
+
 
 # Put what we want to generate when you query GPT-3.5 for demo here
 prompts_demo_gpt3_5 = []

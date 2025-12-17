@@ -34,62 +34,6 @@ def blend_latents(latents_bg, latents_fg, fg_mask, fg_blending_ratio=0.01):
 
     return latents
 
-# @torch.no_grad()
-# def compose_latents(model_dict, latents_all_list, mask_tensor_list, num_inference_steps, overall_batch_size, height, width, latents_bg=None, bg_seed=None, compose_box_to_bg=True, use_fast_schedule=False, fast_after_steps=None):
-#     unet, scheduler, dtype = model_dict.unet, model_dict.scheduler, model_dict.dtype
-    
-#     if latents_bg is None:
-#         generator = torch.manual_seed(bg_seed)  # Seed generator to create the inital latent noise
-#         latents_bg = get_scaled_latents(overall_batch_size, unet.config.in_channels, height, width, generator, dtype, scheduler)
-    
-#     # Other than t=T (idx=0), we only have masked latents. This is to prevent accidentally loading from non-masked part. Use same mask as the one used to compose the latents.
-#     if use_fast_schedule:
-#         # If we use fast schedule, we only compose the frozen steps because the later steps do not match.
-#         composed_latents = torch.zeros((fast_after_steps + 1, *latents_bg.shape), dtype=dtype)
-#     else:
-#         # Otherwise we compose all steps so that we don't need to compose again if we change the frozen steps.
-#         # composed_latents = torch.zeros((num_inference_steps + 1, *latents_bg.shape), dtype=dtype)
-#         # Otherwise we compose all steps so that we don't need to compose again if we change the frozen steps.
-#         # [修正] 如果傳入的 latents_bg 已經包含了歷史記錄 (5D 張量)，直接使用它
-#         if latents_bg.dim() == 5:
-#             composed_latents = latents_bg.clone()
-#         else:
-#             # 舊邏輯：如果只有單張背景，才建立全零張量 (這就是導致背景消失的原因)
-#             composed_latents = torch.zeros((num_inference_steps + 1, *latents_bg.shape), dtype=dtype)
-#             composed_latents[0] = latents_bg
-#     composed_latents[0] = latents_bg
-    
-#     foreground_indices = torch.zeros(latents_bg.shape[-2:], dtype=torch.long)
-    
-#     mask_size = np.array([mask_tensor.sum().item() for mask_tensor in mask_tensor_list])
-#     # Compose the largest mask first
-#     mask_order = np.argsort(-mask_size)
-    
-#     if compose_box_to_bg:
-#         # This has two functionalities: 
-#         # 1. copies the right initial latents from the right place (for centered so generation), 2. copies the right initial latents (since we have foreground blending) for centered/original so generation.
-#         for mask_idx in mask_order:
-#             latents_all, mask_tensor = latents_all_list[mask_idx], mask_tensor_list[mask_idx]
-            
-#             # Note: need to be careful to not copy from zeros due to shifting. 
-#             mask_tensor = utils.binary_mask_to_box_mask(mask_tensor, to_device=False)
-
-#             mask_tensor_expanded = mask_tensor[None, None, None, ...].to(dtype)
-#             composed_latents[0] = composed_latents[0] * (1. - mask_tensor_expanded) + latents_all[0] * mask_tensor_expanded
-    
-#     # This is still needed with `compose_box_to_bg` to ensure the foreground latent is still visible and to compute foreground indices.
-#     for mask_idx in mask_order:
-#         latents_all, mask_tensor = latents_all_list[mask_idx], mask_tensor_list[mask_idx]
-#         foreground_indices = foreground_indices * (~mask_tensor) + (mask_idx + 1) * mask_tensor
-#         mask_tensor_expanded = mask_tensor[None, None, None, ...].to(dtype)
-#         if use_fast_schedule:
-#             composed_latents = composed_latents * (1. - mask_tensor_expanded) + latents_all[:fast_after_steps + 1] * mask_tensor_expanded
-#         else:
-#             composed_latents = composed_latents * (1. - mask_tensor_expanded) + latents_all * mask_tensor_expanded
-        
-#     composed_latents, foreground_indices = composed_latents.to(torch_device), foreground_indices.to(torch_device)
-#     return composed_latents, foreground_indices
-
 @torch.no_grad()
 def compose_latents(model_dict, latents_all_list, mask_tensor_list, num_inference_steps, overall_batch_size, height, width, latents_bg=None, bg_seed=None, compose_box_to_bg=True, use_fast_schedule=False, fast_after_steps=None):
     unet, scheduler, dtype = model_dict.unet, model_dict.scheduler, model_dict.dtype

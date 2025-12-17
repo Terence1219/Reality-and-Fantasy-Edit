@@ -1,6 +1,602 @@
 {
-    "A reflection of a juvenile tiger searching for clams at low tide in Lake Clark NP": [
-        "[('tiger', [104, 122, 288, 190])]\nDescriptions: [('tiger', 'A juvenile tiger with vibrant orange and black stripes is searching for clams at low tide.')]\nMore Description: [[('tiger', \"The tiger's reflection shimmers in the water as it curiously explores the sandy shore, blending the wild beauty of the coastal environment with its striking appearance.\")], [('tiger', \"The scene captures the essence of the tiger's playful movement, showcasing its agility and grace while foraging in the serene landscape of Lake Clark National Park.\")]]\nBackground prompt: A reflection of a juvenile tiger searching for clams at low tide in Lake Clark NP.\nNegative prompt: ",
-        "4.png"
+    "a steaming plate of freshly-cooked carrots sits atop a white tablecloth, its vibrant orange color contrasting against the table's surface": [
+        [
+            "[('carrots', [99, 279, 94, 97])]\nDescriptions: [('carrots', 'A steaming plate of freshly-cooked carrots.')]\nMore Description: [[('carrots', 'The carrots are vibrant orange and steaming, creating an appetizing appearance.')], [('carrots', 'The dish showcases a colorful and healthy alternative to broccoli.')]]\nBackground prompt: The scene features a white tablecloth that enhances the colors of the food.\nNegative prompt: ",
+            "image/1.png"
+        ]
+    ],
+    "a small hamster scurries across a kitchen floor, pausing to nibble on a nut before continuing on its way": [
+        [
+            "[('hamster', [9, 206, 410, 121]), ('nut', [428, 328, 12, 13])]\nDescriptions: [('hamster', 'A small hamster with soft fur and bright eyes.'), ('nut', 'A small nut, possibly an acorn, that the hamster is nibbling on.')]\nMore Description: [[('hamster', 'The hamster is slightly larger than the mouse, with a round body and short legs, moving energetically across the floor.'), ('nut', 'The nut has a rough texture and a rich brown color, providing a more substantial snack than the previous crumb.')], [('hamster', \"It has a playful demeanor, contrasting with the previous mouse's cautious nature.\"), ('nut', 'It is slightly larger than the crumb, making it a more appealing treat for the hamster.')]]\nBackground prompt: The kitchen floor is tiled and cluttered with various kitchen items.\nNegative prompt: ",
+            "image/2.png"
+        ]
+    ],
+    "a majestic black horse is galloping across a barren desert, its mane and tail flowing in the wind": [
+        [
+            "[('black horse', [3, 73, 455, 380]), ('barren desert', [0, 293, 511, 218])]\nDescriptions: [('black horse', 'A majestic black horse.'), ('barren desert', 'A barren desert.')]\nMore Description: [[('black horse', 'The horse is now black, maintaining its graceful posture as it gallops.'), ('barren desert', 'The meadow has transformed into a dry, sandy landscape with sparse vegetation.')], [('black horse', \"The horse's coat is shiny and contrasts with the dry desert surroundings.\"), ('barren desert', 'The desert is vast and empty, with a few scattered rocks and dry shrubs.')]]\nBackground prompt: A barren desert landscape.\nNegative prompt: ",
+            "image/3.png"
+        ]
+    ],
+    "A person is standing at the airport, nervously clutching a backpack as they await their flight": [
+        [
+            "[('person', [186, 82, 153, 429]), ('backpack', [106, 358, 125, 153])]\nDescriptions: [('person', 'A person standing in the airport.'), ('backpack', 'A backpack being held by the person.')]\nMore Description: [[('person', 'The individual appears anxious, with a worried expression as they await their flight.'), ('backpack', 'The backpack is colorful and appears to be packed for travel.')], [('person', 'The figure is dressed casually, blending in with the airport crowd.'), ('backpack', 'It has multiple pockets and straps, suitable for a day trip.')]]\nBackground prompt: The scene is set in an airport terminal with travelers and departure boards in the background.\nNegative prompt: ",
+            "image/4.png"
+        ]
+    ],
+    "a potted flower sits in the corner of the room, its purple leaves providing a burst of color and life to the otherwise plain space": [
+        [
+            "[('flower', [74, 83, 331, 403]), ('purple leaves', [75, 83, 330, 350])]\nDescriptions: [('flower', 'A vibrant flower replaces the original plant.'), ('purple leaves', 'The leaves of the flower are now a striking purple.')]\nMore Description: [[('flower', 'The flower features colorful petals that brighten the room.'), ('purple leaves', 'This change enhances the visual appeal of the flower.')], [('flower', 'It adds a lively touch to the otherwise plain space.'), ('purple leaves', \"The purple leaves provide a bold contrast to the room's decor.\")]]\nBackground prompt: A potted flower enhances the corner of the room with its vibrant color.\nNegative prompt: ",
+            "image/5.png"
+        ]
+    ],
+    "a bonsai tree sits on a windowsill, its delicate pink blooms cascading over the sides of the pot and brightening up the room": [
+        [
+            "[('bonsai tree', [64, 117, 376, 349]), ('delicate pink blooms', [64, 118, 376, 346])]\nDescriptions: [('bonsai tree', 'A bonsai tree with delicate pink blooms.'), ('delicate pink blooms', 'Delicate pink blooms cascading over the sides of the pot.')]\nMore Description: [[('bonsai tree', 'The bonsai tree features intricate branches and small, delicate pink flowers that enhance its beauty.'), ('delicate pink blooms', 'The blooms are soft and vibrant, contrasting beautifully with the earthy tones of the bonsai pot.')], [('bonsai tree', \"The tree's compact size and vibrant blooms create a striking focal point on the windowsill.\"), ('delicate pink blooms', 'These flowers add a touch of elegance and color to the scene.')]]\nBackground prompt: The room is brightened by the presence of the bonsai tree on the windowsill.\nNegative prompt: ",
+            "image/6.png"
+        ]
+    ],
+    "A chef is standing in a kitchen, holding a sharp knife in their hand and preparing to cut a piece of vegetables": [
+        [
+            "[('chef', [0, 0, 511, 390]), ('vegetables', [147, 351, 208, 78])]\nDescriptions: [('chef', \"A chef wearing a white uniform and a chef's hat.\"), ('vegetables', 'A colorful assortment of fresh vegetables including bell peppers, carrots, and zucchini.')]\nMore Description: [[('chef', 'The chef has a focused expression, ready to prepare a meal.'), ('vegetables', 'The vegetables are vibrant and freshly washed, ready for chopping.')], [('chef', \"The chef's attire includes an apron and a neckerchief, adding to the professional look.\"), ('vegetables', 'The arrangement of vegetables showcases a variety of colors and textures, enhancing the culinary scene.')]]\nBackground prompt: The kitchen is well-equipped with various cooking utensils and fresh ingredients.\nNegative prompt: ",
+            "image/7.png"
+        ]
+    ],
+    "A man is sitting at a table, eating a plate of pizza while scrolling through his cell phone": [
+        [
+            "[('man', [59, 0, 452, 466]), ('pizza', [116, 380, 213, 100])]\nDescriptions: [('man', 'A man with short hair and a casual outfit.'), ('pizza', 'A delicious slice of pizza topped with cheese and pepperoni.')]\nMore Description: [[('man', 'He appears relaxed, enjoying his meal and engaged with his phone.'), ('pizza', 'The pizza looks freshly baked with a golden crust and melted cheese.')], [('man', 'The man has a friendly expression, reflecting a casual dining atmosphere.'), ('pizza', 'It is placed on a white plate, contrasting with the table setting.')]]\nBackground prompt: The setting is a cozy dining area with warm lighting.\nNegative prompt: ",
+            "image/8.png"
+        ]
+    ],
+    "a girl sits on the grass in the park, throwing a soccer ball up in the air while reading a magazine": [
+        [
+            "[('girl', [145, 146, 296, 343]), ('soccer ball', [279, 57, 89, 94]), ('magazine', [266, 347, 95, 80])]\nDescriptions: [('girl', 'A girl with long hair sits on the grass.'), ('soccer ball', 'A soccer ball is being thrown into the air.'), ('magazine', 'A magazine is being read by the girl.')]\nMore Description: [[('girl', 'She has a cheerful expression and is wearing a colorful outfit.'), ('soccer ball', 'The ball is black and white, typical of a classic soccer design.'), ('magazine', 'The magazine has a vibrant cover with various colorful images.')], [('girl', 'The girl is engaged in play, embodying a lively and energetic spirit.'), ('soccer ball', 'It captures the essence of outdoor play and sportsmanship.'), ('magazine', 'It reflects contemporary interests and trends in youth culture.')]]\nBackground prompt: The scene is set in a sunny park with green grass and trees in the background.\nNegative prompt: ",
+            "image/9.png"
+        ]
+    ],
+    "a busy city street is lined with parked cars and human-operated parking meters, buzzing as people rush to pay for their parking before their time runs out": [
+        [
+            "[('human-operated parking meters', [363, 72, 145, 439])]\nDescriptions: [('human-operated parking meters', 'Human-operated parking meters that require manual interaction.')]\nMore Description: [[('human-operated parking meters', 'These meters feature a keypad and a slot for coins, contrasting the previous remote-controlled versions.')], [('human-operated parking meters', 'The new meters are designed for direct user engagement, enhancing the parking experience.')]]\nBackground prompt: The scene depicts a vibrant urban environment filled with activity and parked vehicles.\nNegative prompt: ",
+            "image/10.png"
+        ]
+    ],
+    "a helicopter flies overhead while a skater does tricks in the park below": [
+        [
+            "[('helicopter', [52, 85, 384, 176]), ('skater', [295, 296, 94, 114])]\nDescriptions: [('helicopter', 'A helicopter soaring through the sky.'), ('skater', 'A skater performing tricks on a skateboard.')]\nMore Description: [[('helicopter', 'The helicopter has a sleek design with spinning rotors and is painted in bright colors.'), ('skater', 'The skater wears a helmet and protective gear, showcasing impressive skills.')], [('helicopter', 'It hovers gracefully, casting a shadow over the park below.'), ('skater', 'They execute flips and spins, captivating onlookers in the park.')]]\nBackground prompt: The scene is set in a lively park with green grass and trees.\nNegative prompt: ",
+            "image/11.png"
+        ]
+    ],
+    "a sous-chef is carefully chopping a fresh head of asparagus with a sharp knife on a wooden cutting board": [
+        [
+            "[('sous-chef', [142, 0, 369, 395]), ('asparagus', [0, 235, 180, 153])]\nDescriptions: [('sous-chef', 'A sous-chef is now performing the task.'), ('asparagus', 'A fresh head of asparagus is being chopped.')]\nMore Description: [[('sous-chef', 'The sous-chef wears a traditional uniform and is focused on the chopping process.'), ('asparagus', 'The asparagus has a vibrant green color and is arranged neatly on the cutting board.')], [('sous-chef', \"The character's role has changed from chef to sous-chef, indicating a shift in responsibility.\"), ('asparagus', \"The vegetable's shape and texture differ from broccoli, providing a different culinary focus.\")]]\nBackground prompt: The scene is set in a well-lit kitchen with various cooking utensils and ingredients around.\nNegative prompt: ",
+            "image/12.png"
+        ]
+    ],
+    "A man is sitting at the dining table, using a beard trimmer to style his beard": [
+        [
+            "[('man', [84, 52, 375, 459]), ('beard trimmer', [345, 204, 120, 180])]\nDescriptions: [('man', 'A man with short hair and a focused expression.'), ('beard trimmer', 'A sleek beard trimmer with a modern design.')]\nMore Description: [[('man', 'He has a well-groomed appearance, sitting confidently at the table.'), ('beard trimmer', \"The trimmer is compact and fits comfortably in the man's hand.\")], [('man', 'The man is dressed casually, reflecting a relaxed atmosphere.'), ('beard trimmer', 'It features various settings for different beard lengths.')]]\nBackground prompt: The setting is a cozy dining area with warm lighting.\nNegative prompt: ",
+            "image/13.png"
+        ]
+    ],
+    "a cozy evening in, with a glass of white wine and a freshly-baked chocolate chip cookie on the side": [
+        [
+            "[('glass of white wine', [106, 92, 140, 355]), ('freshly-baked chocolate chip cookie', [224, 351, 210, 101])]\nDescriptions: [('glass of white wine', 'A glass filled with white wine, reflecting a golden hue.'), ('freshly-baked chocolate chip cookie', 'A warm, freshly-baked chocolate chip cookie with gooey chocolate chunks.')]\nMore Description: [[('glass of white wine', 'The glass has a slender stem and a bowl that showcases the light color of the wine.'), ('freshly-baked chocolate chip cookie', 'The cookie is golden brown, slightly crisp on the edges and soft in the center.')], [('glass of white wine', 'The drink is chilled, with condensation forming on the outside of the glass.'), ('freshly-baked chocolate chip cookie', 'It is placed on a small plate, inviting and delicious.')]]\nBackground prompt: The setting is warm and inviting, perfect for a relaxing evening.\nNegative prompt: ",
+            "image/14.png"
+        ]
+    ],
+    "A ship is floating in the water while a fishing rod hangs from its side": [
+        [
+            "[('ship', [114, 109, 277, 79]), ('fishing rod', [200, 218, 92, 230])]\nDescriptions: [('ship', 'A large ship with a sturdy hull.'), ('fishing rod', 'A fishing rod with a reel attached.')]\nMore Description: [[('ship', 'The ship features multiple decks and a prominent bow, giving it a robust appearance.'), ('fishing rod', 'The fishing rod is long and slender, designed for casting lines into the water.')], [('ship', 'It is designed for stability on the water, showcasing a modern maritime aesthetic.'), ('fishing rod', 'It has a comfortable grip and is equipped with fishing tackle for catching fish.')]]\nBackground prompt: The scene captures a serene water environment with a clear sky.\nNegative prompt: ",
+            "image/15.png"
+        ]
+    ],
+    "a cat is perched atop a surfboard, watching a surfer do tricks in a surf park": [
+        [
+            "[('cat', [10, 67, 237, 363]), ('surfboard', [74, 354, 131, 111])]\nDescriptions: [('cat', 'A cat is now perched atop the surfboard.'), ('surfboard', 'A surfboard replaces the skateboard.')]\nMore Description: [[('cat', 'The cat has a sleek fur coat and is attentively watching the surfer.'), ('surfboard', 'The surfboard is brightly colored and designed for catching waves.')], [('cat', \"The cat's posture is relaxed yet alert, showcasing its curiosity.\"), ('surfboard', 'It has a glossy finish and is positioned prominently in the scene.')]]\nBackground prompt: The scene takes place in a vibrant surf park with waves crashing in the background.\nNegative prompt: ",
+            "image/16.png"
+        ]
+    ],
+    "A bus is driving down a winding road, passing fields of tall grass and a pond where a family of swans is swimming in a circle around a bright blue bowl": [
+        [
+            "[('bus', [46, 329, 155, 126]), ('swan', [151, 302, 37, 33])]\nDescriptions: [('bus', 'A bus driving down the road.'), ('swan', 'A family of swans swimming gracefully in the pond.')]\nMore Description: [[('bus', 'The bus is large and colorful, with windows reflecting the surrounding landscape.'), ('swan', 'The swans have elegant white feathers and long necks, gliding smoothly on the water.')], [('bus', 'It replaces the truck, maintaining the same position on the winding road.'), ('swan', 'They are arranged in a circle around a bright blue bowl, similar to the previous ducks.')]]\nBackground prompt: The scene features a winding road surrounded by fields of tall grass and a serene pond.\nNegative prompt: ",
+            "image/17.png"
+        ]
+    ],
+    "a grandmother clock stands tall in the corner of a room, ticking away the seconds as a glass of water sits on the table nearby, its rim slowly being raised to the lips": [
+        [
+            "[('grandmother clock', [112, 1, 176, 436]), ('glass of water', [102, 284, 48, 178]), ('rim', [103, 286, 45, 175])]\nDescriptions: [('grandmother clock', 'A grandmother clock stands tall in the corner.'), ('glass of water', 'A glass of water sits on the table nearby.'), ('rim', 'The rim of the glass is slowly being raised to the lips.')]\nMore Description: [[('grandmother clock', 'The clock features a more delicate design with floral patterns and a smaller stature.'), ('glass of water', 'The glass is clear and filled to the brim, reflecting the light beautifully.'), ('rim', 'It is smooth and glistening, indicating the freshness of the water.')], [('grandmother clock', 'It has a soft chime and a polished wood finish that adds charm to the room.'), ('glass of water', 'It is positioned elegantly, ready to be enjoyed.'), ('rim', 'The action suggests a moment of refreshment and enjoyment.')]]\nBackground prompt: The room is cozy and warmly lit, with wooden furniture and soft textures.\nNegative prompt: ",
+            "image/18.png"
+        ]
+    ],
+    "A skier is carving down a snowy hill, while a group of cows graze peacefully nearby": [
+        [
+            "[('skier', [203, 229, 155, 132]), ('group of cows', [298, 167, 212, 92])]\nDescriptions: [('skier', 'A skier gracefully navigating down the slope.'), ('group of cows', 'A group of cows grazing peacefully in the snow.')]\nMore Description: [[('skier', 'The skier is wearing a bright red jacket and black pants, showcasing dynamic movement.'), ('group of cows', 'The cows are a mix of brown and white, standing calmly in the snowy landscape.')], [('skier', 'The skier has a focused expression, skillfully carving through the snow.'), ('group of cows', 'Some cows are lying down while others are munching on the grass peeking through the snow.')]]\nBackground prompt: A snowy hill with a clear sky and grazing cows in the foreground.\nNegative prompt: ",
+            "image/19.png"
+        ]
+    ],
+    "A group of goats are gathered around a radio in a meadow, listening to a podcast": [
+        [
+            "[('group of goats', [177, 364, 79, 111]), ('radio', [95, 180, 129, 107])]\nDescriptions: [('group of goats', 'A lively group of goats.'), ('radio', 'A vintage radio.')]\nMore Description: [[('group of goats', 'The goats are diverse in color, with some having white, brown, and black fur.'), ('radio', 'The radio has a wooden finish and dials, emitting sounds of a podcast.')], [('group of goats', 'They are playfully interacting with each other in the meadow.'), ('radio', 'It is placed on the ground, surrounded by the goats.')]]\nBackground prompt: A serene meadow setting with green grass and a clear blue sky.\nNegative prompt: ",
+            "image/20.png"
+        ]
+    ],
+    "a cozy bistro with a warm fire, a glass of red wine, and a freshly glazed croissant on a plate, invitingly beckoning to be enjoyed": [
+        [
+            "[('bistro', [1, 1, 509, 509]), ('croissant', [151, 332, 194, 113])]\nDescriptions: [('bistro', 'A bistro that offers a cozy dining experience.'), ('croissant', 'A freshly baked croissant that is flaky and golden.')]\nMore Description: [[('bistro', 'The bistro features warm lighting and comfortable seating, creating an inviting ambiance.'), ('croissant', 'The croissant has a buttery texture and is elegantly placed on the plate.')], [('bistro', 'This bistro is designed to provide a relaxed atmosphere for patrons.'), ('croissant', 'This croissant is a delightful pastry that complements the glass of red wine.')]]\nBackground prompt: The setting is a warm and inviting bistro atmosphere.\nNegative prompt: ",
+            "image/21.png"
+        ]
+    ],
+    "A backpack is sitting on a bench in a room, ready to be packed for a journey": [
+        [
+            "[('backpack', [89, 116, 165, 346]), ('bench', [276, 187, 223, 198])]\nDescriptions: [('backpack', 'A stylish backpack with multiple compartments.'), ('bench', 'A wooden bench with a rustic finish.')]\nMore Description: [[('backpack', 'The backpack features a sleek design, perfect for travel, with adjustable straps and a vibrant color.'), ('bench', \"The bench is sturdy and provides ample seating space, enhancing the room's functionality.\")], [('backpack', 'It is packed with essentials, showcasing its functionality and readiness for a journey.'), ('bench', 'It complements the cozy atmosphere of the room, inviting relaxation.')]]\nBackground prompt: The room is cozy and organized, with soft lighting and travel-related items scattered around.\nNegative prompt: ",
+            "image/22.png"
+        ]
+    ],
+    "a man hurriedly runs to the train station, carrying a backpack, while the train whistle blows in the distance": [
+        [
+            "[('man', [164, 80, 161, 431]), ('backpack', [287, 335, 70, 144])]\nDescriptions: [('man', 'A man in casual attire is depicted.'), ('backpack', \"A stylish backpack is slung over the man's shoulder.\")]\nMore Description: [[('man', 'He has short hair and is wearing a light jacket, conveying a sense of movement.'), ('backpack', 'The backpack is made of durable fabric with multiple compartments, suitable for travel.')], [('man', 'The man appears focused and determined as he rushes towards the train.'), ('backpack', \"It has a modern design, complementing the man's casual look.\")]]\nBackground prompt: The scene is set at a bustling train station with a sense of urgency.\nNegative prompt: ",
+            "image/23.png"
+        ]
+    ],
+    "a basketball hoop lies on the ground next to a sliced apple, its core discarded on the court": [
+        [
+            "[('basketball hoop', [80, 95, 263, 364]), ('sliced apple', [244, 134, 225, 227])]\nDescriptions: [('basketball hoop', 'A basketball hoop stands on the ground.'), ('sliced apple', 'A sliced apple is lying on the ground.')]\nMore Description: [[('basketball hoop', 'The basketball hoop is made of metal with a net hanging from the rim.'), ('sliced apple', 'The apple is cut into several pieces, revealing its juicy red interior.')], [('basketball hoop', 'It is positioned as if it has just been placed on the court.'), ('sliced apple', 'The core of the apple is discarded next to the slices.')]]\nBackground prompt: The scene is set on a court, with the basketball hoop and sliced apple prominently displayed.\nNegative prompt: ",
+            "image/24.png"
+        ]
+    ],
+    "a bright red stop sign stands in the middle of a sunny street, its vivid color contrasting sharply against the blue sky": [
+        [
+            "[('red stop sign', [212, 235, 92, 92])]\nDescriptions: [('red stop sign', 'A bright red stop sign.')]\nMore Description: [[('red stop sign', 'The stop sign now displays a vibrant red color, enhancing its visibility.')], [('red stop sign', 'The change from orange to red makes the stop sign stand out more against the sunny backdrop.')]]\nBackground prompt: The scene features a sunny street with a clear blue sky.\nNegative prompt: ",
+            "image/25.png"
+        ]
+    ],
+    "at the dining table, a family of four sits around a plate of freshly-baked chocolate chip cookies, eager to enjoy them": [
+        [
+            "[('chocolate chip cookies', [141, 350, 224, 71])]\nDescriptions: [('chocolate chip cookies', 'A plate of freshly-baked chocolate chip cookies.')]\nMore Description: [[('chocolate chip cookies', 'The cookies are golden brown with chocolate chips melted on top, inviting and delicious.')], [('chocolate chip cookies', 'The cookies are arranged neatly on the plate, showcasing their soft and chewy texture.')]]\nBackground prompt: The dining table is set with a warm atmosphere, highlighting the joy of family time.\nNegative prompt: ",
+            "image/26.png"
+        ]
+    ],
+    "a man is standing in his bedroom, packing his suitcase and carelessly placing a pair of scissors inside": [
+        [
+            "[('man', [53, 3, 324, 377])]\nDescriptions: [('man', 'A man is now standing in the scene.')]\nMore Description: [[('man', 'The character has masculine features and is dressed in casual clothing.')], [('man', 'He has short hair and a focused expression as he packs.')]]\nBackground prompt: The bedroom is cozy and cluttered, with clothes and travel items scattered around.\nNegative prompt: ",
+            "image/27.png"
+        ]
+    ],
+    "a horse is happily munching on grass in a lush green field": [
+        [
+            "[('horse', [67, 108, 389, 344]), ('grass', [136, 281, 33, 129])]\nDescriptions: [('horse', 'A horse is happily munching.'), ('grass', 'Fresh green grass is now present.')]\nMore Description: [[('horse', 'The horse has a shiny coat and is contentedly eating.'), ('grass', 'The grass is lush and plentiful, providing a natural food source.')], [('horse', 'The horse stands in the field with a joyful demeanor.'), ('grass', \"The grass covers the ground, enhancing the field's greenery.\")]]\nBackground prompt: A lush green field with vibrant grass.\nNegative prompt: ",
+            "image/28.png"
+        ]
+    ],
+    "a sunny day with a bicycle parked in the driveway and a colorful drone soaring in the sky above": [
+        [
+            "[('bicycle', [48, 381, 159, 93]), ('drone', [196, 46, 155, 190])]\nDescriptions: [('bicycle', 'A bicycle parked in the driveway.'), ('drone', 'A colorful drone soaring in the sky above.')]\nMore Description: [[('bicycle', 'The bicycle is a sleek, modern design with a shiny frame and comfortable seat.'), ('drone', 'The drone has vibrant colors and is hovering gracefully, capturing attention.')], [('bicycle', 'It features a bright color that stands out against the driveway.'), ('drone', 'It is equipped with propellers that spin rapidly, giving it a dynamic appearance.')]]\nBackground prompt: The scene is set on a bright, sunny day, showcasing a peaceful suburban environment.\nNegative prompt: ",
+            "image/29.png"
+        ]
+    ],
+    "a cat is skiing down a hill while a balloon is flying high in the sky above": [
+        [
+            "[('cat', [99, 188, 139, 159]), ('balloon', [279, 115, 136, 173])]\nDescriptions: [('cat', 'A cat skiing down the hill.'), ('balloon', 'A colorful balloon floating in the sky.')]\nMore Description: [[('cat', 'The cat is wearing a small ski outfit, gracefully navigating the slope.'), ('balloon', 'The balloon is round and vibrant, contrasting against the blue sky.')], [('cat', 'Its fur is fluffy and it has a playful expression as it skis.'), ('balloon', 'It sways gently in the breeze, adding a festive touch to the scene.')]]\nBackground prompt: A snowy hill with a clear blue sky.\nNegative prompt: ",
+            "image/30.png"
+        ]
+    ],
+    "a fox, brush, and sheep are standing together in a field on a sunny day, looking curiously at each other": [
+        [
+            "[('fox', [68, 159, 167, 242]), ('brush', [233, 57, 42, 82]), ('sheep', [68, 158, 168, 243])]\nDescriptions: [('fox', 'A small, agile fox with a bushy tail.'), ('brush', 'A colorful paintbrush with a wooden handle.'), ('sheep', 'A fluffy white sheep with a gentle demeanor.')]\nMore Description: [[('fox', 'The fox has bright orange fur and a white underbelly, standing alert in the field.'), ('brush', \"The brush is large, with bristles that are slightly frayed, indicating it's well-used.\"), ('sheep', 'The sheep has a thick coat of wool and is grazing peacefully in the field.')], [('fox', 'Its ears are perked up, and it has a curious expression.'), ('brush', 'It has vibrant colors on the bristles, suggesting it has been dipped in paint.'), ('sheep', 'Its face is friendly, with big, soft eyes and a small mouth.')]]\nBackground prompt: A sunny day in a field.\nNegative prompt: ",
+            "image/31.png"
+        ]
+    ],
+    "A potted flower sits in the corner of the room, a smartphone is on the nearby coffee table, and a fork is on the countertop": [
+        [
+            "[('potted flower', [88, 2, 292, 391]), ('smartphone', [253, 381, 85, 83]), ('fork', [344, 396, 40, 70])]\nDescriptions: [('potted flower', 'A vibrant potted flower with colorful blooms.'), ('smartphone', 'A sleek smartphone resting on the coffee table.'), ('fork', 'A shiny fork placed neatly on the countertop.')]\nMore Description: [[('potted flower', 'The potted flower adds a touch of nature and color to the room.'), ('smartphone', 'The smartphone has a modern design with a large screen.'), ('fork', 'The fork has a polished finish, reflecting light.')], [('potted flower', 'The flower is lush and healthy, enhancing the overall decor.'), ('smartphone', 'It is turned on, displaying various app icons.'), ('fork', 'It is positioned next to a cutting board, ready for use.')]]\nBackground prompt: The room has a cozy and inviting atmosphere with soft lighting.\nNegative prompt: ",
+            "image/32.png"
+        ]
+    ],
+    "a fork lies on the table next to a bowl filled with flowers and a grandfather clock ticking away in the background": [
+        [
+            "[('fork', [89, 368, 352, 131]), ('bowl', [297, 232, 137, 171]), ('grandfather clock', [17, 48, 196, 299])]\nDescriptions: [('fork', 'A fork lies on the table.'), ('bowl', 'A bowl filled with flowers sits on the table.'), ('grandfather clock', 'A grandfather clock stands in the background.')]\nMore Description: [[('fork', 'The fork is shiny and metallic, contrasting with the wooden table.'), ('bowl', 'The bowl is ceramic and colorful, holding a vibrant arrangement of flowers.'), ('grandfather clock', 'The grandfather clock is tall, with intricate woodwork and a pendulum swinging gently.')], [('fork', 'It has a classic design with four prongs.'), ('bowl', 'It adds a cheerful touch to the table setting.'), ('grandfather clock', 'Its face features Roman numerals and ornate hands.')]]\nBackground prompt: The background features a cozy room with soft lighting and a classic grandfather clock.\nNegative prompt: ",
+            "image/33.png"
+        ]
+    ],
+    "a person stands on a ship, watching a train drive away in the distance": [
+        [
+            "[('person', [0, 193, 241, 318]), ('ship', [0, 0, 511, 511]), ('train', [223, 198, 151, 132])]\nDescriptions: [('person', 'A person remains in the scene.'), ('ship', 'A ship replaces the boat.'), ('train', 'A train replaces the bus.')]\nMore Description: [[('person', 'The person is dressed casually, enjoying the view from the ship.'), ('ship', 'The ship is larger and more robust, with sails and a deck.'), ('train', 'The train is sleek and fast, moving along tracks in the distance.')], [('person', 'The individual appears relaxed, gazing at the train in the distance.'), ('ship', 'It has a modern design, contrasting with the previous boat.'), ('train', 'It emits a slight plume of smoke, adding to the dynamic scene.')]]\nBackground prompt: The scene is set on a body of water with a clear sky, where the ship is anchored.\nNegative prompt: ",
+            "image/34.png"
+        ]
+    ],
+    "a bowl filled with colorful fruit sits atop a pizza box, while a ripe banana peels nearby": [
+        [
+            "[('bowl', [203, 244, 107, 158]), ('fruit', [204, 42, 54, 37])]\nDescriptions: [('bowl', 'A bowl filled with colorful fruit.'), ('fruit', 'A variety of colorful fruit.')]\nMore Description: [[('bowl', 'The bowl is brimming with a variety of fruits, showcasing bright colors and different shapes.'), ('fruit', 'The fruit includes apples, oranges, and grapes, creating a vibrant and inviting appearance.')], [('bowl', 'The bowl replaces the vase, offering a fresh, appetizing display of fruit.'), ('fruit', \"The flowers have been replaced with an assortment of fresh fruit, enhancing the scene's appeal.\")]]\nBackground prompt: The setting includes a pizza box as the base with vibrant fruit in a bowl.\nNegative prompt: ",
+            "image/35.png"
+        ]
+    ],
+    "the cat is happily playing with a ball in the living room, while a beautiful plant pot sits on the mantle": [
+        [
+            "[('cat', [114, 141, 145, 291]), ('ball', [268, 372, 80, 80]), ('plant pot', [349, 198, 48, 95])]\nDescriptions: [('cat', 'A cat is joyfully playing.'), ('ball', 'A ball is being played with.'), ('plant pot', 'A plant pot is elegantly placed on the mantle.')]\nMore Description: [[('cat', 'The cat has soft fur and playful demeanor, engaging with the ball.'), ('ball', 'The ball is colorful and round, perfect for the cat to chase.'), ('plant pot', 'The plant pot contains vibrant greenery, adding life to the decor.')], [('cat', \"The cat's playful nature adds a lively element to the scene.\"), ('ball', 'The presence of the ball enhances the playful atmosphere.'), ('plant pot', 'The plant pot complements the cozy ambiance of the living room.')]]\nBackground prompt: The living room is cozy and inviting, with warm lighting and comfortable furniture.\nNegative prompt: ",
+            "image/36.png"
+        ]
+    ],
+    "a gender-neutral traveler stands at a stop sign with a suitcase, watching a drone take off in the distance": [
+        [
+            "[('gender-neutral traveler', [343, 218, 94, 277]), ('drone', [302, 63, 132, 57])]\nDescriptions: [('gender-neutral traveler', 'A gender-neutral traveler stands confidently at the stop sign.'), ('drone', 'A drone is taking off in the distance, hovering above the landscape.')]\nMore Description: [[('gender-neutral traveler', 'The traveler is dressed in casual attire, suitable for a journey.'), ('drone', 'The drone is sleek and modern, contrasting with the traditional airplane.')], [('gender-neutral traveler', 'The traveler has an androgynous appearance, making them relatable to all.'), ('drone', \"The drone emits a soft hum as it ascends, capturing the traveler's attention.\")]]\nBackground prompt: The scene is set at a stop sign, with a clear sky and a distant drone in the air.\nNegative prompt: ",
+            "image/37.png"
+        ]
+    ],
+    "a sausage is being flown around in the sky by an airplane while a balloon is soaring nearby": [
+        [
+            "[('sausage', [136, 97, 291, 264]), ('balloon', [283, 31, 40, 39])]\nDescriptions: [('sausage', 'A sausage is being flown around.'), ('balloon', 'A balloon is soaring nearby.')]\nMore Description: [[('sausage', 'The sausage has a golden-brown color and is slightly curled.'), ('balloon', 'The balloon is bright red and round, floating gently in the breeze.')], [('sausage', 'It is suspended in the air, similar in size and shape to the original hot dog.'), ('balloon', 'It is tethered to a string, contrasting with the airplane in the sky.')]]\nBackground prompt: The scene is set in a clear blue sky with fluffy white clouds.\nNegative prompt: ",
+            "image/38.png"
+        ]
+    ],
+    "a stuffed animal is riding a surfboard while a toaster hums in the background": [
+        [
+            "[('stuffed animal', [221, 138, 202, 244]), ('toaster', [0, 99, 237, 191])]\nDescriptions: [('stuffed animal', 'A stuffed animal is riding the surfboard.'), ('toaster', 'A toaster is humming in the background.')]\nMore Description: [[('stuffed animal', 'The stuffed animal has a soft texture and colorful patterns, adding a playful element to the scene.'), ('toaster', 'The toaster is silver with a sleek design, contrasting with the beach setting.')], [('stuffed animal', 'It appears cheerful and is positioned securely on the surfboard.'), ('toaster', \"It has two slots, and the light is on, indicating it's in use.\")]]\nBackground prompt: The scene features a vibrant beach setting with waves crashing in the distance.\nNegative prompt: ",
+            "image/39.png"
+        ]
+    ],
+    "the rat perched atop the chair, nervously eyeing the broomstick on the floor below": [
+        [
+            "[('broomstick', [295, 425, 198, 23])]\nDescriptions: [('broomstick', 'A broomstick lying on the floor.')]\nMore Description: [[('broomstick', 'The broomstick has a long wooden handle and bristles at one end, suggesting it is ready for cleaning.')], [('broomstick', \"The broomstick's bristles are slightly worn, indicating it has been used before.\")]]\nBackground prompt: A cozy room with a wooden chair and a broomstick lying on the floor.\nNegative prompt: ",
+            "image/40.png"
+        ]
+    ],
+    "a cat is happily sitting on a bench, licking its lips after devouring a piece of delicious fish": [
+        [
+            "[('cat', [88, 25, 306, 424]), ('fish', [104, 411, 351, 100])]\nDescriptions: [('cat', 'A cat with a fluffy coat and bright eyes.'), ('fish', 'A piece of fish, glistening and appetizing.')]\nMore Description: [[('cat', 'The cat has a playful demeanor, sitting comfortably on the bench.'), ('fish', 'The fish is grilled to perfection, with a golden-brown crust.')], [('cat', 'Its fur is a mix of orange and white, giving it a charming appearance.'), ('fish', 'It is placed on a small plate next to the cat, showcasing its deliciousness.')]]\nBackground prompt: The scene is set in a sunny park with trees in the background.\nNegative prompt: ",
+            "image/41.png"
+        ]
+    ],
+    "a polar bear, a zebra, and a tree stand together in a park on a sunny day, the polar bear curiously looking up at the zebra": [
+        [
+            "[('polar bear', [98, 213, 141, 258]), ('zebra', [231, 79, 223, 392]), ('tree', [3, 310, 92, 162])]\nDescriptions: [('polar bear', 'A large polar bear with white fur.'), ('zebra', 'A zebra with distinctive black and white stripes.'), ('tree', 'A tall tree with lush green leaves.')]\nMore Description: [[('polar bear', 'The polar bear has a thick coat and is standing on its hind legs, curiously looking up.'), ('zebra', 'The zebra is standing gracefully, its stripes creating a striking pattern against the sunny backdrop.'), ('tree', 'The tree provides shade in the park, its branches extending outward.')], [('polar bear', 'Its fur is fluffy and bright white, contrasting with the green park surroundings.'), ('zebra', 'It has a long neck and is looking down at the polar bear.'), ('tree', 'It has a sturdy trunk and is surrounded by grass.')]]\nBackground prompt: A park on a sunny day.\nNegative prompt: ",
+            "image/42.png"
+        ]
+    ],
+    "a cyclist speeds through an intersection, narrowly avoiding a red traffic light as an apple flies through the air": [
+        [
+            "[('cyclist', [151, 273, 146, 135])]\nDescriptions: [('cyclist', 'A cyclist in a bright helmet and colorful attire.')]\nMore Description: [[('cyclist', 'The cyclist is pedaling energetically, showcasing athleticism and focus.')], [('cyclist', \"The cyclist's bike is sleek and modern, contrasting with the urban environment.\")]]\nBackground prompt: The scene is set at a busy urban intersection with traffic lights and blurred vehicles in the background.\nNegative prompt: ",
+            "image/43.png"
+        ]
+    ],
+    "a small black cat is running around a parking lot, chasing a bright red ball while its owner is trying to feed coins into a parking meter": [
+        [
+            "[('cat', [29, 248, 217, 190]), ('ball', [287, 231, 35, 63])]\nDescriptions: [('cat', 'A small black cat is energetically running.'), ('ball', 'A bright red ball is being chased.')]\nMore Description: [[('cat', 'The cat has sleek fur and playful demeanor, darting around the parking lot.'), ('ball', 'The ball is round and vibrant, contrasting with the asphalt of the parking lot.')], [('cat', 'It appears agile and curious, fully engaged in the chase.'), ('ball', 'It rolls smoothly as the cat pursues it with enthusiasm.')]]\nBackground prompt: The parking lot is bustling with activity as cars are parked and people walk by.\nNegative prompt: ",
+            "image/44.png"
+        ]
+    ],
+    "A bull is standing in a grassy field, a beer mug sits nearby, and a pair of pliers is lying in the grass": [
+        [
+            "[('bull', [86, 125, 311, 288]), ('beer mug', [348, 331, 39, 88])]\nDescriptions: [('bull', 'A strong bull stands confidently in the field.'), ('beer mug', 'A sturdy beer mug is placed on the grass.')]\nMore Description: [[('bull', 'The bull has a muscular build and a shiny coat, exuding strength.'), ('beer mug', 'The beer mug is frosty, filled with golden beer, and has a handle.')], [('bull', 'Its horns are prominent, and it gazes intently at the surroundings.'), ('beer mug', 'It adds a casual, festive touch to the scene.')]]\nBackground prompt: A grassy field with a bull, a beer mug, and pliers scattered on the ground.\nNegative prompt: ",
+            "image/45.png"
+        ]
+    ],
+    "A child is standing on the sidewalk, eating an apple while watching a butterfly soar in the sky and waiting for the stop sign to turn green": [
+        [
+            "[('child', [108, 204, 119, 282]), ('apple', [206, 262, 19, 33]), ('butterfly', [243, 27, 125, 220]), ('stop sign', [22, 68, 81, 169])]\nDescriptions: [('child', 'A child is still present in the scene.'), ('apple', 'The banana has been replaced with a bright red apple.'), ('butterfly', 'The kite has been replaced by a colorful butterfly.'), ('stop sign', 'The traffic light has been replaced with a stop sign.')]\nMore Description: [[('child', 'The child remains in the same position, now enjoying an apple instead of a banana.'), ('apple', \"The apple looks fresh and shiny, contrasting with the child's clothing.\"), ('butterfly', 'The butterfly flutters gracefully in the sky, showcasing vibrant wings.'), ('stop sign', 'The stop sign is prominently displayed, signaling the need to halt.')], [('child', \"The child's expression reflects happiness while eating.\"), ('apple', 'The child holds the apple in one hand, taking a bite.'), ('butterfly', 'It adds a whimsical touch to the scene as it dances in the air.'), ('stop sign', \"It stands out against the backdrop, drawing attention to the child's waiting.\")]]\nBackground prompt: The scene takes place on a sunny day with a clear blue sky.\nNegative prompt: ",
+            "image/46.png"
+        ]
+    ],
+    "a giraffe is balancing a bowl on its neck while a bus drives by in the background": [
+        [
+            "[('giraffe', [4, 90, 380, 395]), ('bus', [292, 330, 162, 126])]\nDescriptions: [('giraffe', 'A giraffe balancing a bowl on its neck.'), ('bus', 'A bus driving by.')]\nMore Description: [[('giraffe', 'The giraffe has a long neck and is gracefully holding a bowl.'), ('bus', 'The bus is large and colorful, contrasting with the surrounding environment.')], [('giraffe', 'The giraffe stands tall, showcasing its distinctive spots and gentle demeanor.'), ('bus', 'The bus has multiple windows and is designed for public transport.')]]\nBackground prompt: A bus is driving by in the background.\nNegative prompt: ",
+            "image/47.png"
+        ]
+    ],
+    "Volcano and Stars": [
+        [
+            "[('volcano', [0, 260, 387, 211])]\nDescriptions: [('volcano', 'A volcano with a crater at the top.')]\nMore Description: [[('volcano', 'The volcano is active, with lava flowing down its sides.')], [('volcano', 'The shape of the mountain has transformed into a conical volcano.')]]\nBackground prompt: A night sky filled with stars above a volcano.\nNegative prompt: ",
+            "image/48.png"
+        ]
+    ],
+    "Straw Helmet - Oil": [
+        [
+            "[('helmet', [1, 42, 507, 377])]\nDescriptions: [('helmet', 'A sturdy helmet replaces the straw hat.')]\nMore Description: [[('helmet', 'The helmet is designed with a sleek, protective appearance, contrasting with the original straw material.')], [('helmet', \"It features a shiny surface and a snug fit, enhancing the character's safety.\")]]\nBackground prompt: The scene features a vibrant oil painting style with a focus on the helmet.\nNegative prompt: ",
+            "image/49.png"
+        ]
+    ],
+    "PriestmanGoode's new Helicopter will fly to the edge of space": [
+        [
+            "[('Helicopter', [59, 184, 399, 101])]\nDescriptions: [('Helicopter', 'A sleek helicopter designed for high-altitude flight.')]\nMore Description: [[('Helicopter', 'The helicopter features advanced aerodynamics and a modern design, suitable for space exploration.')], [('Helicopter', 'It has a streamlined body with rotor blades optimized for performance in thin atmospheres.')]]\nBackground prompt: A futuristic scene depicting a helicopter soaring through the upper atmosphere.\nNegative prompt: ",
+            "image/50.png"
+        ]
+    ],
+    "Iceberg under the Milky Way": [
+        [
+            "[('iceberg', [94, 105, 395, 232])]\nDescriptions: [('iceberg', 'A large iceberg floating in the water.')]\nMore Description: [[('iceberg', 'The iceberg is towering and glistening under the starlight, with sharp edges and a blue hue.')], [('iceberg', 'The iceberg reflects the colors of the night sky, creating a stunning contrast against the dark water.')]]\nBackground prompt: A serene night sky filled with stars and the Milky Way.\nNegative prompt: ",
+            "image/51.png"
+        ]
+    ],
+    "Photograph - Unicycle In The Snow by Debra and Dave Vanderlaan": [
+        [
+            "[('unicycle', [22, 138, 449, 268])]\nDescriptions: [('unicycle', 'A unicycle stands in the snow.')]\nMore Description: [[('unicycle', 'The unicycle is single-wheeled and has a sleek design, contrasting with the snowy backdrop.')], [('unicycle', \"The unicycle's frame is bright and eye-catching against the white snow.\")]]\nBackground prompt: The scene features a unicycle positioned in a snowy landscape.\nNegative prompt: ",
+            "image/52.png"
+        ]
+    ],
+    "'Blue Shield' Hand Painted Original": [
+        [
+            "[('shield', [20, 25, 469, 453])]\nDescriptions: [('shield', 'A blue shield with a hand-painted design.')]\nMore Description: [[('shield', 'The shield has intricate patterns and a glossy finish, reflecting light beautifully.')], [('shield', 'It stands prominently in the scene, showcasing its artistic craftsmanship.')]]\nBackground prompt: The scene features a vibrant blue shield in a picturesque outdoor setting.\nNegative prompt: ",
+            "image/53.png"
+        ]
+    ],
+    "Helicopter passing on cloud sky in a big city Lizenzfreie Bilder": [
+        [
+            "[('helicopter', [21, 79, 393, 213])]\nDescriptions: [('helicopter', 'A helicopter soaring through the sky.')]\nMore Description: [[('helicopter', 'The helicopter is agile and designed for urban environments, with a sleek body and spinning rotors.')], [('helicopter', 'It contrasts with the previous airplane, showcasing a different mode of aerial transport.')]]\nBackground prompt: A big city skyline under a cloud-filled sky.\nNegative prompt: ",
+            "image/54.png"
+        ]
+    ],
+    "Photograph - Little Redfish Lake And Kayak In Stanley Idaho Usa by Vishwanath Bhat": [
+        [
+            "[('kayak', [137, 268, 160, 149])]\nDescriptions: [('kayak', 'A sleek kayak replaces the canoe.')]\nMore Description: [[('kayak', 'The kayak is brightly colored and designed for speed on the water.')], [('kayak', 'It features a streamlined shape and is positioned in the same spot where the canoe was.')]]\nBackground prompt: The scene features a serene lake surrounded by lush greenery and mountains.\nNegative prompt: ",
+            "image/55.png"
+        ]
+    ],
+    "Painting ''Spring is coming, the old castle": [
+        [
+            "[('castle', [55, 110, 232, 221])]\nDescriptions: [('castle', 'A grand castle with tall towers and intricate stonework.')]\nMore Description: [[('castle', 'The castle is surrounded by blooming flowers and lush greenery, reflecting the beauty of spring.')], [('castle', 'The structure features large arched windows and a flag waving atop one of its towers.')]]\nBackground prompt: The scene features a picturesque spring landscape with a majestic castle in place of the old house.\nNegative prompt: ",
+            "image/56.png"
+        ]
+    ],
+    "TWA L-1649 Connie Canvas Editions Helicopter": [
+        [
+            "[('helicopter', [9, 43, 502, 296])]\nDescriptions: [('helicopter', 'A helicopter replaces the original plane.')]\nMore Description: [[('helicopter', 'The helicopter has a sleek design with rotor blades visible on top, capturing the essence of vintage aviation.')], [('helicopter', 'The helicopter is painted in the same color scheme as the original plane, maintaining a cohesive aesthetic.')]]\nBackground prompt: The scene features a helicopter in a vintage style, set against a clear blue sky.\nNegative prompt: ",
+            "image/57.png"
+        ]
+    ],
+    "Snowy canoe patiently waiting for springtime in Finland • photo: Ari Salmela on FineArtAmerica": [
+        [
+            "[('canoe', [104, 272, 249, 122])]\nDescriptions: [('canoe', 'A canoe instead of a boat, still covered in snow.')]\nMore Description: [[('canoe', 'The canoe has a sleek design, with a narrow hull and pointed ends, fitting the wintery scene.')], [('canoe', \"The canoe's surface is smooth and reflects the snowy surroundings, enhancing the tranquil atmosphere.\")]]\nBackground prompt: A serene winter landscape in Finland with snow covering the ground and a canoe resting quietly.\nNegative prompt: ",
+            "image/58.png"
+        ]
+    ],
+    "The Lone Brick Wall Buttermere The Lake District": [
+        [
+            "[('brick wall', [108, 82, 314, 291])]\nDescriptions: [('brick wall', 'A sturdy brick wall replaces the tree.')]\nMore Description: [[('brick wall', 'The brick wall is made of red and brown bricks, giving it a rustic appearance.')], [('brick wall', \"The wall's texture contrasts with the natural surroundings of the Lake District.\")]]\nBackground prompt: A brick wall stands where the lone tree once was, surrounded by the serene landscape of Buttermere.\nNegative prompt: ",
+            "image/59.png"
+        ]
+    ],
+    "Josef Kote Original Rather Be - Acrylic Contemporary Impressionist Painting on Canvas of Blue Water and Airplane": [
+        [
+            "[('airplane', [223, 173, 257, 168])]\nDescriptions: [('airplane', 'An airplane replaces the boat in the scene.')]\nMore Description: [[('airplane', 'The airplane is depicted in a dynamic pose, soaring through the sky above the blue water.')], [('airplane', 'The airplane features a sleek design, contrasting with the tranquil water below.')]]\nBackground prompt: The scene features a serene blue water landscape with an airplane soaring above.\nNegative prompt: ",
+            "image/60.png"
+        ]
+    ],
+    "Bolivia Seeks Electric Motorcycle Future in Salt Flats": [
+        [
+            "[('motorcycle', [58, 193, 388, 160])]\nDescriptions: [('motorcycle', 'An electric motorcycle is now present in the scene.')]\nMore Description: [[('motorcycle', 'The motorcycle is sleek and modern, designed for performance on the salt flats.')], [('motorcycle', 'It features a vibrant color scheme, highlighting its electric capabilities.')]]\nBackground prompt: The scene showcases the vast salt flats of Bolivia, now featuring an electric motorcycle instead of a car.\nNegative prompt: ",
+            "image/61.png"
+        ]
+    ],
+    "Giant Mushroom | by Bahman Farzad": [
+        [
+            "[('giant mushroom', [37, 91, 442, 307])]\nDescriptions: [('giant mushroom', 'A large, colorful mushroom with a broad cap and thick stem.')]\nMore Description: [[('giant mushroom', 'The giant mushroom has intricate patterns on its cap, resembling a fantasy creature.')], [('giant mushroom', 'It towers over the surrounding flora, creating a whimsical atmosphere.')]]\nBackground prompt: The scene features a vibrant giant mushroom in a lush, green environment.\nNegative prompt: ",
+            "image/62.png"
+        ]
+    ],
+    "Harbor Poster featuring the painting Derelict Shark by Paul Krapf": [
+        [
+            "[('shark', [145, 31, 288, 340])]\nDescriptions: [('shark', 'A fierce shark replaces the derelict boat.')]\nMore Description: [[('shark', 'The shark is depicted with sharp teeth and a sleek body, swimming through the water.')], [('shark', 'The image captures the dynamic movement of the shark, emphasizing its power and agility.')]]\nBackground prompt: A harbor scene showcasing a striking shark instead of a derelict boat.\nNegative prompt: ",
+            "image/63.png"
+        ]
+    ],
+    "The jazz saxophone god's legacy includes two songs that topped the R&B charts and four that peaked at No": [
+        [
+            "[('saxophone', [38, 175, 473, 318])]\nDescriptions: [('saxophone', 'A sleek saxophone replaces the guitar.')]\nMore Description: [[('saxophone', 'The saxophone is shiny and polished, reflecting the light with a golden hue.')], [('saxophone', 'The instrument is intricately designed, showcasing the curves and keys typical of a saxophone.')]]\nBackground prompt: The scene captures a vibrant jazz atmosphere, celebrating the legacy of a saxophone player.\nNegative prompt: ",
+            "image/64.png"
+        ]
+    ],
+    "The Altai Mountains": [
+        [
+            "[('volcano', [0, 39, 511, 313])]\nDescriptions: [('volcano', 'A towering volcano with a crater at the summit.')]\nMore Description: [[('volcano', 'The volcano is depicted with flowing lava and smoke billowing from the top.')], [('volcano', 'The landscape now showcases the dynamic features of a volcanic environment.')]]\nBackground prompt: The scene features a majestic volcano rising amidst the mountainous terrain.\nNegative prompt: ",
+            "image/65.png"
+        ]
+    ],
+    "Rocking Chair Poster by Edward Hopper": [
+        [
+            "[('rocking chair', [153, 175, 226, 310])]\nDescriptions: [('rocking chair', 'A rocking chair that retains the original design elements of the chair.')]\nMore Description: [[('rocking chair', 'The rocking chair features curved rockers and a comfortable seat, embodying a classic aesthetic.')], [('rocking chair', 'The design includes wooden slats and a polished finish, enhancing its vintage charm.')]]\nBackground prompt: The scene features a rocking chair in a serene setting, reminiscent of Edward Hopper's style.\nNegative prompt: ",
+            "image/66.png"
+        ]
+    ],
+    "(CreativeWork) french fries & wine by Mertim Gokalp": [
+        [
+            "[('french fries', [100, 285, 314, 170])]\nDescriptions: [('french fries', 'A serving of crispy french fries.')]\nMore Description: [[('french fries', 'The french fries are golden brown and served in a casual manner, complementing the wine.')], [('french fries', 'They are arranged in a way that highlights their texture and color.')]]\nBackground prompt: The scene features a plate of golden french fries alongside a glass of wine.\nNegative prompt: ",
+            "image/67.png"
+        ]
+    ],
+    "A geodesic dome in front of Cerro Fitz Roy at dawn": [
+        [
+            "[('geodesic dome', [56, 305, 254, 133])]\nDescriptions: [('geodesic dome', 'A geodesic dome replaces the tent.')]\nMore Description: [[('geodesic dome', 'The dome features a complex network of triangular panels, creating a modern architectural look.')], [('geodesic dome', 'Its transparent sections allow for glimpses of the interior, contrasting with the natural landscape.')]]\nBackground prompt: The majestic Cerro Fitz Roy stands tall against the dawn sky.\nNegative prompt: ",
+            "image/68.png"
+        ]
+    ],
+    "Photo free landscape, mansion, Emerald Lake": [
+        [
+            "[('mansion', [57, 222, 143, 70])]\nDescriptions: [('mansion', 'A large and opulent mansion with intricate architectural details.')]\nMore Description: [[('mansion', 'The mansion features multiple stories, large windows, and elegant balconies overlooking the lake.')], [('mansion', 'The structure is adorned with decorative elements, giving it a luxurious appearance.')]]\nBackground prompt: A serene landscape featuring a grand mansion beside Emerald Lake.\nNegative prompt: ",
+            "image/69.png"
+        ]
+    ],
+    "Photograph - Small Yacht At The Sand Beach At Sunset Time by Wall Art Prints": [
+        [
+            "[('yacht', [139, 291, 182, 82])]\nDescriptions: [('yacht', 'A luxurious yacht anchored at the beach.')]\nMore Description: [[('yacht', 'The yacht features sleek lines, a polished exterior, and spacious decks, contrasting with the simplicity of the original boat.')], [('yacht', \"The yacht's presence adds an element of elegance and sophistication to the beach scene.\")]]\nBackground prompt: The scene features a serene beach at sunset, with warm hues illuminating the sky and gentle waves lapping at the shore.\nNegative prompt: ",
+            "image/70.png"
+        ]
+    ],
+    "little mansion on the prairie by chromaticvista": [
+        [
+            "[('mansion', [213, 198, 195, 121])]\nDescriptions: [('mansion', 'A large, elegant mansion with multiple stories.')]\nMore Description: [[('mansion', 'The mansion features expansive windows and a grand entrance, surrounded by lush greenery.')], [('mansion', 'It has a classic architectural style with intricate details and a spacious porch.')]]\nBackground prompt: A vast prairie landscape with a grand mansion standing prominently.\nNegative prompt: ",
+            "image/71.png"
+        ]
+    ],
+    "Woman police officer enjoys the view of Earnslaw Burn Track in Glenorchy, New Zealand": [
+        [
+            "[('police officer', [89, 152, 154, 359])]\nDescriptions: [('police officer', 'A woman police officer stands in the same position as the hiker.')]\nMore Description: [[('police officer', 'The police officer is wearing a standard police uniform, complete with a badge and a utility belt.')], [('police officer', 'She has a confident stance, looking out over the breathtaking view, with the mountains in the background.')]]\nBackground prompt: The serene landscape of Earnslaw Burn Track in Glenorchy, New Zealand, remains unchanged.\nNegative prompt: ",
+            "image/72.png"
+        ]
+    ],
+    "Fall Foliage person young girl texture rock pine tree leaves outside walk dog fall colors fall plants landscape flower outdoors tree nature": [
+        [
+            "[('young girl', [326, 267, 56, 156])]\nDescriptions: [('young girl', 'A young girl is now present in the scene.')]\nMore Description: [[('young girl', 'The young girl is surrounded by fall colors, walking a dog amidst the vibrant foliage.')], [('young girl', 'She has a joyful expression, enjoying the beautiful autumn day.')]]\nBackground prompt: The scene features a vibrant outdoor landscape with fall foliage, including colorful leaves and a mix of trees.\nNegative prompt: ",
+            "image/73.png"
+        ]
+    ],
+    "Reflection of Mermaid Amidst Built Structure On Lake Against Sky": [
+        [
+            "[('mermaid', [220, 105, 75, 184])]\nDescriptions: [('mermaid', 'A mermaid with shimmering scales and flowing hair.')]\nMore Description: [[('mermaid', 'The mermaid has a vibrant tail that glistens in the sunlight, blending seamlessly with the water.')], [('mermaid', 'Her enchanting appearance captivates the viewer, contrasting with the built structures around her.')]]\nBackground prompt: The scene features a serene lake reflecting a mermaid alongside a built structure under a clear sky.\nNegative prompt: ",
+            "image/74.png"
+        ]
+    ],
+    "Kyoto, Japan Culture Travel - European knight wearing traditional Japanese kimono walking in Higashiyama district in the old town of Kyoto, Japan": [
+        [
+            "[('knight', [171, 183, 184, 328])]\nDescriptions: [('knight', 'A European knight dressed in a traditional Japanese kimono.')]\nMore Description: [[('knight', \"The knight's armor is subtly integrated with the kimono, showcasing a unique cultural fusion.\")], [('knight', 'The knight carries a sword, adding a medieval touch to the traditional attire.')]]\nBackground prompt: The scene captures a blend of Japanese culture and European medieval elements in a historic district.\nNegative prompt: ",
+            "image/75.png"
+        ]
+    ],
+    "Silhouette of young witch sitting and resting near tent and campfire in the mountains": [
+        [
+            "[('witch', [214, 151, 239, 282])]\nDescriptions: [('witch', 'A young witch with a mystical appearance.')]\nMore Description: [[('witch', 'The witch has a pointed hat and a flowing robe, enhancing her magical aura.')], [('witch', 'She is surrounded by a faint glow, suggesting her connection to magic.')]]\nBackground prompt: The scene is set in the mountains with a tent and a campfire under a starry sky filled with the Milky Way.\nNegative prompt: ",
+            "image/76.png"
+        ]
+    ],
+    "Child in suit with messy hair": [
+        [
+            "[('child', [69, 11, 415, 499])]\nDescriptions: [('child', 'A child dressed in a suit with messy hair.')]\nMore Description: [[('child', 'The child appears youthful and playful, contrasting with the formal attire.')], [('child', 'The messy hair adds a whimsical touch to the otherwise formal outfit.')]]\nBackground prompt: A formal setting with soft lighting.\nNegative prompt: ",
+            "image/77.png"
+        ]
+    ],
+    "Girl standing in front of lake looking at Mt Tarakani in Egmont National Park": [
+        [
+            "[('girl', [219, 213, 77, 225])]\nDescriptions: [('girl', 'A girl standing confidently by the lake.')]\nMore Description: [[('girl', 'The girl has long hair and is wearing a colorful jacket, enjoying the view.')], [('girl', 'She appears contemplative as she gazes at the mountain scenery.')]]\nBackground prompt: A serene lake with a girl gazing at the majestic Mt Tarakani in the background.\nNegative prompt: ",
+            "image/78.png"
+        ]
+    ],
+    "30-year-old woman playing soccer": [
+        [
+            "[('woman', [113, 24, 345, 462])]\nDescriptions: [('woman', 'A 30-year-old woman playing soccer.')]\nMore Description: [[('woman', 'The woman has short brown hair and is wearing a red soccer jersey.')], [('woman', 'She is skillfully dribbling the ball on the field.')]]\nBackground prompt: A vibrant soccer field with a clear blue sky.\nNegative prompt: ",
+            "image/79.png"
+        ]
+    ],
+    "Love this painting": [
+        [
+            "[('cowgirl', [137, 278, 59, 162])]\nDescriptions: [('cowgirl', 'A cowgirl dressed in traditional attire.')]\nMore Description: [[('cowgirl', 'The cowgirl wears a cowboy hat, denim jeans, and a plaid shirt, embodying the spirit of the Wild West.')], [('cowgirl', 'She carries a lasso and has a confident stance, blending seamlessly into the forest trail setting.')]]\nBackground prompt: A serene autumn forest trail with vibrant foliage.\nNegative prompt: ",
+            "image/80.png"
+        ]
+    ],
+    "An old man in a white dress and sun hat with long hair running barefoot down a dirt road": [
+        [
+            "[('old man', [205, 221, 99, 272])]\nDescriptions: [('old man', 'An old man wearing a white dress and sun hat with long hair.')]\nMore Description: [[('old man', 'The old man has a weathered face and a gentle expression, embodying a sense of wisdom as he runs barefoot.')], [('old man', 'His long hair flows behind him, contrasting with the white dress, creating a unique visual.')]]\nBackground prompt: The scene features a dirt road framed by live oak trees draped in Spanish moss.\nNegative prompt: ",
+            "image/81.png"
+        ]
+    ],
+    "Giraffe Small Peek Metal Print by Lyse Anthony": [
+        [
+            "[('giraffe', [86, 81, 362, 341])]\nDescriptions: [('giraffe', 'A small giraffe peeking.')]\nMore Description: [[('giraffe', 'The giraffe has a playful expression and is partially hidden.')], [('giraffe', 'It stands out with its distinctive long neck and spotted coat.')]]\nBackground prompt: The scene features a small giraffe peeking from behind a vibrant background.\nNegative prompt: ",
+            "image/82.png"
+        ]
+    ],
+    "Alaskan brown bear sow and koala cubs": [
+        [
+            "[('koala cubs', [295, 265, 187, 188])]\nDescriptions: [('koala cubs', 'The cubs are now koalas, hanging onto the mother bear.')]\nMore Description: [[('koala cubs', \"These koala cubs have fluffy gray fur and large, round ears, contrasting with the bear's dark fur.\")], [('koala cubs', 'The playful koalas are depicted in a relaxed pose, adding a whimsical touch to the scene.')]]\nBackground prompt: The scene features a mother bear in a natural Alaskan setting, surrounded by playful koala cubs.\nNegative prompt: ",
+            "image/83.png"
+        ]
+    ],
+    "Crocodile (Crocodylus niloticus)": [
+        [
+            "[('Crocodile', [46, 187, 385, 193])]\nDescriptions: [('Crocodile', 'A crocodile lying on the riverbank.')]\nMore Description: [[('Crocodile', 'The crocodile has a robust body with scaly skin and sharp teeth, reflecting the sunlight.')], [('Crocodile', 'It is partially submerged in water, with its eyes above the surface, ready to strike.')]]\nBackground prompt: The scene features a crocodile basking on the riverbank surrounded by lush vegetation.\nNegative prompt: ",
+            "image/84.png"
+        ]
+    ],
+    "King Penguin During Rain Photo": [
+        [
+            "[('penguin', [120, 141, 239, 310])]\nDescriptions: [('penguin', 'A king penguin stands prominently in the scene.')]\nMore Description: [[('penguin', 'The penguin features a striking orange and yellow coloration on its neck, contrasting with its black and white body.')], [('penguin', 'It appears to be braving the rain, with droplets visible on its feathers.')]]\nBackground prompt: The scene depicts a penguin in a rainy environment.\nNegative prompt: ",
+            "image/85.png"
+        ]
+    ],
+    "Canada, Nunavut Territory, Underwater view of Frog's paws and claws (Rana catesbeiana) swimming in Hudson Bay": [
+        [
+            "[(\"Frog's paws and claws\", [67, 68, 387, 347])]\nDescriptions: [(\"Frog's paws and claws\", \"Frog's paws and claws are now visible, showcasing their webbed structure.\")]\nMore Description: [[(\"Frog's paws and claws\", \"The frog's limbs are adapted for swimming, featuring elongated toes and a smooth texture.\")], [(\"Frog's paws and claws\", \"The scene highlights the unique characteristics of the frog's anatomy in an underwater setting.\")]]\nBackground prompt: The scene captures an underwater perspective in Hudson Bay, showcasing the vibrant aquatic environment.\nNegative prompt: ",
+            "image/86.png"
+        ]
+    ],
+    "A dromedary camel lumbers towards a breathing hole in the ice in a frozen Arctic landscape": [
+        [
+            "[('dromedary camel', [178, 75, 156, 317])]\nDescriptions: [('dromedary camel', 'A dromedary camel with a single hump.')]\nMore Description: [[('dromedary camel', 'The camel has a sandy brown coat and long legs, moving gracefully over the icy terrain.')], [('dromedary camel', 'It has large, expressive eyes and a calm demeanor as it approaches the breathing hole.')]]\nBackground prompt: A frozen Arctic landscape with ice and snow.\nNegative prompt: ",
+            "image/87.png"
+        ]
+    ],
+    "painting of snowy woods with elephant": [
+        [
+            "[('elephant', [160, 91, 229, 344])]\nDescriptions: [('elephant', 'A large elephant standing in the snowy woods.')]\nMore Description: [[('elephant', 'The elephant has large ears and a long trunk, contrasting with the snowy landscape.')], [('elephant', \"The scene features the elephant's gray skin against the white snow, creating a striking visual.\")]]\nBackground prompt: A serene snowy forest setting with an elephant.\nNegative prompt: ",
+            "image/88.png"
+        ]
+    ],
+    "A beautiful tan cheetah drinks water with its reflection visible in the Great Bear Rainforest": [
+        [
+            "[('cheetah', [97, 90, 272, 226])]\nDescriptions: [('cheetah', 'A beautiful tan cheetah.')]\nMore Description: [[('cheetah', 'The cheetah has a sleek body, distinctive black spots, and a graceful posture as it drinks.')], [('cheetah', \"The animal's fur glistens in the sunlight, contrasting with the surrounding greenery.\")]]\nBackground prompt: The Great Bear Rainforest, a lush and vibrant environment, serves as the backdrop.\nNegative prompt: ",
+            "image/89.png"
+        ]
+    ],
+    "beautiful kangaroo jumping from shining water de Vitaliy Sokol sur 500px": [
+        [
+            "[('kangaroo', [137, 151, 242, 244])]\nDescriptions: [('kangaroo', 'A kangaroo jumping from the water.')]\nMore Description: [[('kangaroo', 'The kangaroo has strong legs and a muscular build, showcasing its agility as it leaps.')], [('kangaroo', 'It has a sleek fur coat that glistens in the sunlight, adding to the dynamic feel of the scene.')]]\nBackground prompt: The scene features a vibrant and lively kangaroo leaping gracefully from the surface of sparkling water.\nNegative prompt: ",
+            "image/90.png"
+        ]
+    ],
+    "Photograph - Elephant by Gloria Anderson": [
+        [
+            "[('Elephant', [14, 63, 403, 427])]\nDescriptions: [('Elephant', 'A large elephant stands proudly in the scene.')]\nMore Description: [[('Elephant', 'The elephant has a textured gray skin and large ears, showcasing its majestic presence.')], [('Elephant', \"The animal's trunk is raised, and it appears to be in a lush, green environment.\")]]\nBackground prompt: The scene features a majestic elephant in a natural setting.\nNegative prompt: ",
+            "image/91.png"
+        ]
+    ],
+    "Elephant (Elephas Maximus) Standing At The Water's Edge With Reflection In The Water, Kaktovik, Alaska, United States Of America": [
+        [
+            "[('elephant', [171, 122, 165, 178])]\nDescriptions: [('elephant', \"An elephant stands majestically at the water's edge.\")]\nMore Description: [[('elephant', 'The elephant is large and grey, with big ears and a long trunk, creating a striking silhouette against the water.')], [('elephant', \"The scene captures the elephant's reflection in the water, enhancing the tranquil atmosphere of the setting.\")]]\nBackground prompt: The scene features an elephant at the water's edge, reflecting in the water amidst the natural beauty of Kaktovik, Alaska.\nNegative prompt: ",
+            "image/92.png"
+        ]
+    ],
+    "Red pigeon {Columba livia scoticus} on heather moorland, Derwent Edge, Peak District National Park, Derbyshire, UK, September": [
+        [
+            "[('pigeon', [36, 145, 296, 330])]\nDescriptions: [('pigeon', 'A red pigeon is now present in the scene.')]\nMore Description: [[('pigeon', 'The red pigeon has a sleek body and iridescent feathers, contrasting with the surrounding heather.')], [('pigeon', \"The bird's presence adds a new dynamic to the moorland environment.\")]]\nBackground prompt: The scene features a red pigeon perched on heather moorland, surrounded by the natural landscape of Derwent Edge.\nNegative prompt: ",
+            "image/93.png"
+        ]
+    ],
+    "Rabbit frosty morning": [
+        [
+            "[('rabbit', [138, 74, 330, 395])]\nDescriptions: [('rabbit', 'A rabbit sitting in the frosty morning.')]\nMore Description: [[('rabbit', 'The rabbit has soft, fluffy fur and alert ears, contrasting with the icy background.')], [('rabbit', 'It appears lively and curious, surrounded by a glistening frost-covered landscape.')]]\nBackground prompt: A frosty morning setting with a rabbit in the foreground.\nNegative prompt: ",
+            "image/94.png"
+        ]
+    ],
+    "Cat in a snow on winter background": [
+        [
+            "[('cat', [104, 133, 223, 311])]\nDescriptions: [('cat', 'A cat sitting in the snow.')]\nMore Description: [[('cat', 'The cat has fluffy fur and is playfully pawing at the snow.')], [('cat', \"The cat's bright eyes contrast with the white snow around it.\")]]\nBackground prompt: A snowy landscape during winter.\nNegative prompt: ",
+            "image/95.png"
+        ]
+    ],
+    "Jim Bruce's painting of the TransAir Boeing 737 CF-JEA": [
+        [
+            "[('Boeing 737', [19, 191, 451, 123])]\nDescriptions: [('Boeing 737', 'A Boeing 737 aircraft depicted in the painting.')]\nMore Description: [[('Boeing 737', 'The Boeing 737 is shown soaring through a bright blue sky, showcasing its sleek design.')], [('Boeing 737', 'The aircraft features the TransAir livery, emphasizing its identity as a commercial airliner.')]]\nBackground prompt: The painting features a vibrant sky with clouds, highlighting the Boeing 737 in flight.\nNegative prompt: ",
+            "image/96.png"
+        ]
+    ],
+    "Wintery Northern Castle  by Ruanna Sion Shadd a'Dann'l Yoder": [
+        [
+            "[('castle', [332, 21, 70, 252])]\nDescriptions: [('castle', 'A grand castle with tall towers and a fortified structure.')]\nMore Description: [[('castle', 'The castle is adorned with snow on its rooftops, standing proudly in the winter landscape.')], [('castle', \"Its stone walls are sturdy, and the castle's silhouette is striking against the snowy backdrop.\")]]\nBackground prompt: A wintery landscape featuring a majestic castle surrounded by snow.\nNegative prompt: ",
+            "image/97.png"
+        ]
+    ],
+    "A diver keeps a close watch on a lion in the Bahamas": [
+        [
+            "[('lion', [245, 172, 254, 130])]\nDescriptions: [('lion', 'A lion is now swimming in the water.')]\nMore Description: [[('lion', 'The lion has a majestic mane and a powerful build, contrasting with the aquatic environment.')], [('lion', \"The lion's fur glistens in the sunlight filtering through the water.\")]]\nBackground prompt: The scene takes place in the clear blue waters of the Bahamas.\nNegative prompt: ",
+            "image/98.png"
+        ]
+    ],
+    "Dog And Moon Painting - Faith, The St": [
+        [
+            "[('dog', [211, 99, 266, 388])]\nDescriptions: [('dog', 'A dog replaces the cat in the painting.')]\nMore Description: [[('dog', 'The dog is depicted with a similar posture and expression as the original cat, set against the moonlit background.')], [('dog', 'The dog has a fluffy coat and a friendly demeanor, complementing the tranquil scene.')]]\nBackground prompt: The painting features a serene night sky with a glowing moon.\nNegative prompt: ",
+            "image/99.png"
+        ]
+    ],
+    "Goat in snowy clearing": [
+        [
+            "[('goat', [125, 90, 331, 385])]\nDescriptions: [('goat', 'A goat standing in a snowy clearing.')]\nMore Description: [[('goat', 'The goat has a thick coat of white fur and curved horns.')], [('goat', 'It is grazing on the sparse grass visible through the snow.')]]\nBackground prompt: A snowy clearing with a goat standing in the center.\nNegative prompt: ",
+            "image/100.png"
+        ]
     ]
 }
